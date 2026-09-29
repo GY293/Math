@@ -264,7 +264,7 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
 <header class="top">
   <div class="eyebrow">Analysis für Informatik · MA0902 · Before Chapter 1</div>
   <h1>Basics: sets, maps, fields<span class="de">Grundlagen: Mengen, Abbildungen, Körper</span></h1>
-  <p class="lede">The script starts with the sentence "\((\mathbb R,+,\cdot)\) ist ein kommutativer Körper" and moves on. This page explains everything that sentence and the first chapters take for granted: the language of <strong>sets</strong>, the basic <strong>proof techniques</strong>, <strong>maps</strong> (injective, surjective, bijective), the algebraic structures <strong>group, ring and field</strong>, and <strong>ordered fields</strong>. Nothing here is examined on its own, but every chapter uses it.</p>
+  <p class="lede">The script starts with the sentence "\((\mathbb R,+,\cdot)\) ist ein kommutativer Körper" and moves on. This page explains everything that sentence and the first chapters take for granted: the language of <strong>sets</strong>, the basic <strong>proof techniques</strong>, <strong>maps</strong> (injective, surjective, bijective), the algebraic structures <strong>group, ring and field</strong>, and <strong>ordered fields</strong>. Only a handful of exam items ask about this material directly (they are listed at the end of B.3); everything else in the course uses it silently. The last section is a German–English list for reading the exam paper itself.</p>
   <p class="legend">Source labels: <span class="src">Skript §1.1</span> where the script uses the idea · <span class="src extra">Extra</span> background the script assumes (everything on this page is background, so most boxes carry this label).</p>
 </header>
 
@@ -304,11 +304,30 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
       <tr><td>\(\{f(n):n\in\mathbb N\}\)</td><td>the set of all values \(f(1),f(2),\dots\)</td><td>\(\{\frac1n:n\in\mathbb N\}=\{1,\frac12,\frac13,\dots\}\)</td></tr>
     </tbody>
   </table></div>
+  <p class="small">Four things in these examples get their proper definition in Chapter 1 and are used here only as familiar notation: the number sets \(\mathbb N=\{1,2,3,\dots\}\) — <strong>in this course without 0</strong> — and \(\mathbb Z,\mathbb Q,\mathbb R\) (<a href="#s11">§1.1</a>); intervals such as \((0,2)=\{x:0&lt;x&lt;2\}\) (<a href="#s12">§1.2</a>); the absolute value \(|x|\), the distance from \(x\) to 0 (<a href="#s13">§1.3</a>); and countability, which is what maps are used for there.</p>
 </div>
 <div class="box method">
   <div class="head"><span class="kind">How to prove two sets are equal</span><span class="src extra">Extra</span></div>
   <p>Show both inclusions: \(A\subseteq B\) (take any \(x\in A\), show \(x\in B\)) and \(B\subseteq A\). This "⊆ and ⊇" pattern appears in the script, e.g. in Lemma 12.6(c).</p>
-  <p class="small">Example: \(\{x\in\mathbb R:|x-1|&lt;1\}=(0,2)\). "⊆": if \(|x-1|&lt;1\), then \(-1&lt;x-1&lt;1\), so \(0&lt;x&lt;2\). "⊇": if \(0&lt;x&lt;2\), then \(-1&lt;x-1&lt;1\), so \(|x-1|&lt;1\). This exact set is an exam question (SoSe19 A1c).</p>
+  <p class="small">Example: \(\{x\in\mathbb R:|x-1|&lt;1\}=(0,2)\). "⊆": if \(|x-1|&lt;1\), then \(-1&lt;x-1&lt;1\), so \(0&lt;x&lt;2\). "⊇": if \(0&lt;x&lt;2\), then \(-1&lt;x-1&lt;1\), so \(|x-1|&lt;1\). This exact set is an exam question (SoSe19 A1c, worked in <a href="#c1-exam">Chapter 1</a>).</p>
+</div>
+
+<h3 id="c0-sum" data-toc="Σ and Π notation">Reading sums and products: \(\sum\) and \(\prod\) <span class="src extra">Extra</span></h3>
+<div class="box def">
+  <div class="head"><span class="kind">Notation</span><span class="src extra">Extra</span></div>
+  <p>\[\sum_{k=m}^{n}a_k=a_m+a_{m+1}+\dots+a_n,\qquad \prod_{k=m}^{n}a_k=a_m\cdot a_{m+1}\cdots a_n.\]
+  \(k\) is a <strong>dummy index</strong>: its name carries no meaning, \(\sum_{k=1}^3a_k=\sum_{i=1}^3a_i\). Conventions: an <strong>empty</strong> sum (\(n&lt;m\)) is \(0\), an empty product is \(1\) — this is why \(0!=\prod_{k=1}^{0}k=1\).</p>
+  <p class="small">Examples: \(\sum_{k=1}^nk=\frac{n(n+1)}2\); \(n!=\prod_{k=1}^nk\); \(\binom nk=\frac{n!}{k!(n-k)!}\); the series of Chapter 3 are sums with \(n\to\infty\).</p>
+</div>
+<div class="box method">
+  <div class="head"><span class="kind">The four manipulations used all the time</span><span class="src extra">Extra</span></div>
+  <ol class="steps">
+    <li><strong>Linearity:</strong> \(\sum_k(\alpha a_k+\beta b_k)=\alpha\sum_ka_k+\beta\sum_kb_k\). Constants come out, sums split — but only <em>term by term</em>.</li>
+    <li><strong>Splitting off a term:</strong> \(\sum_{k=0}^{n}a_k=a_0+\sum_{k=1}^{n}a_k=\sum_{k=0}^{n-1}a_k+a_n\). Used whenever a formula starts at a different index than your sum (Chapter 3 does this constantly).</li>
+    <li><strong>Index shift</strong> <span class="de-term">[Indexverschiebung]</span>: substituting \(j=k-1\) shifts <em>both</em> limits, \(\sum_{k=1}^{n}a_k=\sum_{j=0}^{n-1}a_{j+1}\). It is the discrete version of a substitution in an integral (<a href="#c3-s31">§3.1</a>, and in every power-series computation in <a href="#c10-s101">Chapter 10</a>).</li>
+    <li><strong>Telescoping:</strong> if \(a_k=b_k-b_{k+1}\), almost everything cancels: \(\sum_{k=m}^{n}a_k=b_m-b_{n+1}\) (<a href="#c3-tele">§3.1</a>).</li>
+  </ol>
+  <p class="small"><strong>Warning:</strong> \(\sum_k a_kb_k\ne\left(\sum_ka_k\right)\left(\sum_kb_k\right)\). Multiplying two sums produces <em>all</em> pairs \(a_ib_j\); sorting them by \(i+j\) is exactly the Cauchy product of <a href="#c3-cauchy">§3.3</a>.</p>
 </div>
 </section>
 
@@ -334,10 +353,19 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
     <tr><td><strong>direct</strong></td><td>assume \(A\), derive \(B\) step by step</td><td>triangle inequality (Satz 1.12)</td></tr>
     <tr><td><strong>contrapositive</strong></td><td>assume "not \(B\)", derive "not \(A\)"</td><td>"if \(a_k\not\to0\), the series diverges" (Lemma 3.4)</td></tr>
     <tr><td><strong>contradiction</strong> <span class="de-term">[Widerspruch]</span></td><td>assume \(A\) and "not \(B\)", derive something impossible</td><td>\(\sqrt2\notin\mathbb Q\), Cantor, Archimedes (Ch. 1)</td></tr>
-    <tr><td><strong>induction</strong> <span class="de-term">[Induktion]</span></td><td>for statements about all \(n\in\mathbb N\): base case + step \(n\to n+1\)</td><td>Bernoulli's inequality (Satz 2.18) — explained in Ch. 2</td></tr>
+    <tr><td><strong>induction</strong> <span class="de-term">[Induktion]</span></td><td>for statements about all \(n\in\mathbb N\): base case + step \(n\to n+1\)</td><td>Bernoulli's inequality (Satz 2.18) — recipe in <a href="#c2-tools">Ch. 2</a></td></tr>
   </tbody>
 </table></div>
-<p class="small">Quantifiers (\(\forall\), \(\exists\)) and how to negate them are explained at the start of Chapter 1. "o.B.d.A." <span class="de-term">[ohne Beschränkung der Allgemeinheit]</span> = "without loss of generality": the other case works the same way.</p>
+<div class="box ex">
+  <div class="head"><span class="kind">One small proof of each kind</span><span class="src extra">Extra</span></div>
+  <ul>
+    <li><strong>Direct.</strong> Claim: if \(a\) and \(b\) are even, so is \(a+b\). Proof: even means \(a=2m\), \(b=2k\) with \(m,k\in\mathbb Z\). Then \(a+b=2(m+k)\), and \(m+k\in\mathbb Z\), so \(a+b\) is even. ∎</li>
+    <li><strong>Contrapositive.</strong> Claim: if \(n^2\) is even, then \(n\) is even. A direct attack would have to take a square root; the contrapositive is easy. Proof: assume \(n\) is odd, \(n=2m+1\). Then \(n^2=4m^2+4m+1=2(2m^2+2m)+1\) is odd. That is "not \(B\) ⇒ not \(A\)", which is the same statement. ∎ <span class="small">(This is the step the script needs inside the \(\sqrt2\notin\mathbb Q\) proof, <a href="#s11">§1.1</a>.)</span></li>
+    <li><strong>Contradiction.</strong> Claim: there is no smallest positive real number. Proof: suppose \(x&gt;0\) were the smallest. Then \(\frac x2\) is again positive and \(\frac x2&lt;x\) — a positive number smaller than the smallest one. Contradiction, so no such \(x\) exists. ∎</li>
+  </ul>
+  <p class="small">Notice the shape: a proof starts by writing down what the assumption <em>means</em> (a definition unpacked into a formula) and ends with what the claim means. Most exam proofs in this course are three to six such lines.</p>
+</div>
+<p class="small">Quantifiers (\(\forall\), \(\exists\)) and how to negate them are explained at the start of Chapter 1 (<a href="#quant">§1.1 · Quantifiers</a>); induction is explained with Bernoulli's inequality in <a href="#c2-tools">Chapter 2</a>. "o.B.d.A." <span class="de-term">[ohne Beschränkung der Allgemeinheit]</span> = "without loss of generality": the other case works the same way.</p>
 </section>
 
 <hr class="sec">
@@ -351,7 +379,9 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
     <li>\(f\) is <strong>injective</strong> <span class="de-term">[injektiv]</span> if different inputs give different outputs: \(f(a_1)=f(a_2)\Rightarrow a_1=a_2\). <em>No two arrows land on the same point.</em></li>
     <li>\(f\) is <strong>surjective</strong> <span class="de-term">[surjektiv]</span> if every \(b\in B\) is hit: \(\forall b\in B\ \exists a\in A: f(a)=b\). <em>Every point of \(B\) receives at least one arrow.</em></li>
     <li>\(f\) is <strong>bijective</strong> <span class="de-term">[bijektiv]</span> if it is both. <em>Every point of \(B\) receives exactly one arrow.</em> Then the arrows can be reversed: the <strong>inverse map</strong> \(f^{-1}:B\to A\) sends \(b\) to the unique \(a\) with \(f(a)=b\).</li>
-    <li>The <strong>composition</strong> <span class="de-term">[Verkettung]</span> of \(g:A\to B\) and \(f:B\to C\) is \(f\circ g:A\to C\), \(x\mapsto f(g(x))\) — "first \(g\), then \(f\)".</li>
+    <li>The <strong>composition</strong> <span class="de-term">[Verkettung]</span> of \(g:A\to B\) and \(f:B\to C\) is \(f\circ g:A\to C\), \(x\mapsto f(g(x))\) — "first \(g\), then \(f\)". The <strong>identity</strong> \(\operatorname{id}_A(x)=x\) satisfies \(f^{-1}\circ f=\operatorname{id}_A\) and \(f\circ f^{-1}=\operatorname{id}_B\) for bijective \(f\) — this is Satz 5.3 in the script.</li>
+    <li>The <strong>preimage</strong> <span class="de-term">[Urbild]</span> of a set \(C\subseteq B\) is \(f^{-1}(C)=\{a\in A:f(a)\in C\}\). It exists for <em>every</em> map — \(f\) need not be bijective, and \(f^{-1}(C)\) may be empty or large. Do not confuse this set with the inverse <em>map</em> \(f^{-1}\), which only exists when \(f\) is bijective. Example: for \(f(x)=x^2\), \(f^{-1}(\{4\})=\{-2,2\}\).</li>
+    <li>The <strong>restriction</strong> <span class="de-term">[Einschränkung]</span> \(f|_{A_0}\) is the same rule with the smaller domain \(A_0\subseteq A\). This is how Chapter 5 makes \(\sin\) invertible: \(\sin\) on all of \(\mathbb R\) is not injective, but \(\sin|_{[-\pi/2,\pi/2]}\) is, and its inverse is \(\arcsin\) (<a href="#c5-s53">§5.3</a>).</li>
   </ul>
 </div>
 <div class="widget" id="mapW">
@@ -374,6 +404,15 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
     <li>\(f:[0,\infty)\to[0,\infty),\ x\mapsto x^2\): bijective, inverse \(y\mapsto\sqrt y\).</li>
   </ul>
   <p class="small">Same formula, three different maps: whether a map is injective/surjective depends on the chosen domain and codomain, not just on the formula. For finite sets you can read off: injective needs \(|A|\le|B|\), surjective needs \(|A|\ge|B|\), bijective needs \(|A|=|B|\) — try it in the widget.</p>
+</div>
+<div class="box exam">
+  <div class="head"><span class="kind">Where this page is asked directly</span><span class="src exam">WiSe23 6a · WiSe19 1i · SoSe19 A1c</span></div>
+  <ul>
+    <li><strong>WiSe23 6a:</strong> is \(f:[0,\infty)\to\mathbb N_0,\ x\mapsto\lfloor x\rfloor\) injective, surjective, bijective? Answer each with a <em>reason</em>: one counterexample kills injectivity (\(f(6.2)=f(6.3)=6\)), and one preimage per target proves surjectivity (\(f(n)=n\)). Worked in <a href="#c5-exam">Chapter 5</a>.</li>
+    <li><strong>WiSe19 1i:</strong> draw the graph of the inverse function — mirror at the line \(y=x\) (<a href="#c5-s51">§5.1</a>).</li>
+    <li><strong>SoSe19 A1c:</strong> describing a set given by an inequality, then reading off sup/inf (<a href="#c1-exam">Chapter 1</a>).</li>
+    <li>The field and order rules themselves are never asked on their own, with one exception: "ℂ cannot be ordered" (Lemma 1.4) is a standard short item — see <a href="#complex">Chapter 1</a>.</li>
+  </ul>
 </div>
 </section>
 
@@ -422,7 +461,7 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
     <tr><td>\(\mathbb Z\)</td><td>✓</td><td>✓</td><td>✗ (\(\frac12\notin\mathbb Z\))</td><td>commutative ring</td></tr>
     <tr><td>\(\mathbb Q,\ \mathbb R,\ \mathbb C\)</td><td>✓</td><td>✓</td><td>✓</td><td><strong>fields</strong></td></tr>
     <tr><td>\(\mathbb Z/p\), \(p\) prime</td><td>✓</td><td>✓</td><td>✓</td><td>field (finite!)</td></tr>
-    <tr><td>\(\mathbb Z/n\), \(n\) not prime</td><td>✓</td><td>✓</td><td>✗ (e.g. \(2\cdot3=0\) in \(\mathbb Z/6\))</td><td>commutative ring</td></tr>
+    <tr><td>\(\mathbb Z/n\), \(n\) not prime</td><td>✓</td><td>✓</td><td>✗ (in \(\mathbb Z/6\): no \(2^{-1}\), because \(2\cdot3=0\))</td><td>commutative ring</td></tr>
     <tr><td>\(2\times2\) matrices</td><td>✓</td><td>✗</td><td>✗</td><td>non-commutative ring</td></tr>
     <tr><td>polynomials \(\mathbb R[x]\)</td><td>✓</td><td>✓</td><td>✗ (\(\frac1x\) is no polynomial)</td><td>commutative ring</td></tr>
   </tbody>
@@ -510,6 +549,58 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
 </section>
 
 <hr class="sec">
+<section id="c0-german">
+<h2 data-toc="Exam German"><span class="num">B.6</span>Reading the exam in German <span class="de-term">[Prüfungssprache]</span></h2>
+<p>This guide is in English, but the exam paper is in German. Most of the mathematical vocabulary appears in brackets throughout the chapters; what is easy to overlook are the <strong>instruction words</strong> and the sentences that tell you <em>how much</em> you have to write. Those decide your points as much as the mathematics does.</p>
+<div class="box method">
+  <div class="head"><span class="kind">Instruction words <span class="de-term">[Arbeitsanweisungen]</span></span><span class="src extra">Extra</span></div>
+  <div class="tbl"><table class="t">
+    <thead><tr><th>German</th><th>English</th><th>what is expected</th></tr></thead>
+    <tbody>
+      <tr><td>Zeigen Sie / Beweisen Sie</td><td>show / prove</td><td>a complete argument, every step justified by a named theorem or definition</td></tr>
+      <tr><td>Begründen Sie</td><td>justify, give reasons</td><td>shorter: name the theorem or give the counterexample, no full proof</td></tr>
+      <tr><td>Berechnen Sie / Bestimmen Sie</td><td>compute / determine</td><td>a result plus the computation</td></tr>
+      <tr><td>Geben Sie … an</td><td>state …</td><td>the answer alone is enough (often "ohne Begründung", without reasons)</td></tr>
+      <tr><td>Untersuchen Sie … auf Konvergenz</td><td>investigate … for convergence</td><td>decide convergent/divergent <em>and</em> say which criterion you used</td></tr>
+      <tr><td>Entscheiden Sie, ob …</td><td>decide whether …</td><td>yes/no with a reason; a counterexample counts as a reason</td></tr>
+      <tr><td>Skizzieren Sie / Zeichnen Sie</td><td>sketch / draw</td><td>a labelled drawing; axes, intercepts, asymptotes</td></tr>
+      <tr><td>Kreuzen Sie an</td><td>tick</td><td>multiple choice; usually no reason needed</td></tr>
+      <tr><td>Ermitteln / Ableiten / Auflösen nach</td><td>find out / differentiate / solve for</td><td>as it says</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="box warn">
+  <div class="head"><span class="kind">Sentences that change how much you must write</span></div>
+  <ul>
+    <li><strong>"Bei dieser Aufgabe wird nur das Ergebnis bewertet."</strong> — only the result is graded. Write the answer; working earns nothing (but may still help you).</li>
+    <li><strong>"Bei dieser Aufgabe sind alle Zwischenschritte zu begründen."</strong> — every intermediate step must be justified. Name the theorem you use ("nach dem Mittelwertsatz", "mit dem Quotientenkriterium"); a correct result without reasons loses most of the points.</li>
+    <li><strong>"Es genügt, … anzugeben."</strong> — it is enough to state …; <strong>"ohne Beweis"</strong> — no proof required; <strong>"Hinweis"</strong> — hint, and it is nearly always meant to be used.</li>
+    <li><strong>"Aussage i)* ist schwierig und wird als Bonus gewertet."</strong> — that item is a bonus; do it last (this exact sentence is in WiSe20 A2).</li>
+    <li><strong>"(bitte wenden)"</strong> — please turn over; <strong>"Platz für den Rechenweg"</strong> — space for your working; <strong>"Zusatzblatt"</strong> — extra sheet.</li>
+  </ul>
+</div>
+<div class="box def">
+  <div class="head"><span class="kind">Words inside the statements</span><span class="src extra">Extra</span></div>
+  <div class="tbl"><table class="t">
+    <thead><tr><th>German</th><th>English</th><th>German</th><th>English</th></tr></thead>
+    <tbody>
+      <tr><td>Sei / Seien … gegeben</td><td>let … be given</td><td>Behauptung</td><td>claim</td></tr>
+      <tr><td>für alle / es existiert (es gibt)</td><td>for all / there exists</td><td>Voraussetzung</td><td>hypothesis, assumption</td></tr>
+      <tr><td>genau dann, wenn</td><td>if and only if</td><td>Widerspruch</td><td>contradiction</td></tr>
+      <tr><td>notwendig / hinreichend</td><td>necessary / sufficient</td><td>Gegenbeispiel</td><td>counterexample</td></tr>
+      <tr><td>es gilt</td><td>we have, it holds that</td><td>o.B.d.A.</td><td>without loss of generality</td></tr>
+      <tr><td>höchstens / mindestens / genau</td><td>at most / at least / exactly</td><td>paarweise verschieden</td><td>pairwise distinct</td></tr>
+      <tr><td>beliebig (beliebig oft)</td><td>arbitrary (arbitrarily often)</td><td>jeweils</td><td>in each case</td></tr>
+      <tr><td>Ansatz</td><td>trial form you insert (Ch. 12)</td><td>Probe</td><td>check by substituting back</td></tr>
+      <tr><td>Satz / Lemma / Korollar</td><td>theorem / lemma / corollary</td><td>Folgerung, Bemerkung</td><td>consequence, remark</td></tr>
+      <tr><td>Definitionsbereich / Wertebereich</td><td>domain / range</td><td>ausgelassen</td><td>skipped (the script marks material it left out)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Subject vocabulary (Folge, Reihe, Grenzwert, Häufungspunkt, Schranke, Stammfunktion, …) is given in brackets next to each notion in the chapters, so it is not repeated here. If a word in an old exam is not in this list, the chapter that owns the topic has it.</p>
+</div>
+</section>
+
+<hr class="sec">
 <section id="c0-summary">
 <h2 data-toc="Summary"><span class="num">Σ</span>Summary</h2>
 <ol class="steps">
@@ -519,6 +610,8 @@ footer{margin-top:56px;font-family:var(--sans);font-size:13px;color:var(--muted)
   <li><strong>Structures</strong>: group (one operation, invertible) → ring (+, ·, no division) → field (division by nonzero), each adding rules to the previous one. ℤ is a ring, ℚ, ℝ, ℂ are fields.</li>
   <li><strong>Consequences</strong> of the field axioms: \(a\cdot0=0\), \((-1)(-1)=1\), \(ab=0\Rightarrow a=0\) or \(b=0\).</li>
   <li><strong>Order</strong>: "positive" with rules (a), (b) ⇒ all inequality rules; multiplying by a negative flips. ℚ, ℝ ordered; ℂ, \(\mathbb Z/p\) not. ℝ = the complete ordered field.</li>
+  <li><strong>Sums</strong>: \(\sum\) is linear, splits, shifts (\(j=k-1\)) and telescopes; empty sum \(=0\), empty product \(=1\). A product of two sums is not the sum of the products.</li>
+  <li><strong>Exam German</strong>: <em>zeigen/beweisen</em> = full proof, <em>begründen</em> = give the reason, <em>angeben</em> = answer only; watch for "nur das Ergebnis wird bewertet" and "alle Zwischenschritte sind zu begründen".</li>
 </ol>
 </section>
 
@@ -873,7 +966,23 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
     <li><strong>Max or not?</strong> Check whether \(s\in M\).</li>
   </ol>
   <p>For the infimum, mirror everything: \(s\le a\) for all \(a\in M\), and for every \(\varepsilon&gt;0\) some \(a\in M\) with \(a&lt;s+\varepsilon\).</p>
-  <p>A useful shortcut for sets given by a sequence \(M=\{x_n:n\in\mathbb N\}\): if \(x_n\) is <strong>increasing</strong>, then \(x_1\) is the minimum and the supremum is the limit. If it is <strong>decreasing</strong>, \(x_1\) is the maximum and the infimum is the limit. (Chapter 2, Satz 2.17, turns "the limit is the sup" into a theorem.)</p>
+  <p>A useful shortcut for sets given by a sequence \(M=\{x_n:n\in\mathbb N\}\): if \(x_n\) is <strong>increasing</strong>, then \(x_1\) is the minimum, and the supremum is the limit — or \(\infty\) if the sequence is unbounded. If it is <strong>decreasing</strong>, \(x_1\) is the maximum and the infimum is the limit (or \(-\infty\)). (Chapter 2, Satz 2.17, turns "the limit is the sup" into a theorem.)</p>
+</div>
+
+<div class="box thm">
+  <div class="head"><span class="kind">Four rules that save work</span><span class="src extra">Extra</span></div>
+  <p>For nonempty bounded sets \(A,B\subseteq\mathbb R\) and \(c\in\mathbb R\), write \(A+B=\{a+b:a\in A,\ b\in B\}\) and \(cA=\{ca:a\in A\}\). Then</p>
+  <ol>
+    <li>\(\sup(-A)=-\inf A\) and \(\inf(-A)=-\sup A\) — mirroring at 0 swaps the two (this is the proof of the infimum version of the axiom above);</li>
+    <li>\(\sup(A\cup B)=\max\{\sup A,\sup B\}\);</li>
+    <li>\(\sup(A+B)=\sup A+\sup B\);</li>
+    <li>\(\sup(cA)=c\sup A\) for \(c&gt;0\), but \(\sup(cA)=c\inf A\) for \(c&lt;0\).</li>
+  </ol>
+  <details class="proof"><summary>Proof of 3, and why the exam's function version only gives "≤"</summary>
+    <p>"\(\le\)": every element of \(A+B\) is some \(a+b\le\sup A+\sup B\), so the right side is an upper bound, and \(\sup(A+B)\) is the least one.</p>
+    <p>"\(\ge\)": let \(\varepsilon&gt;0\). By step 2 of the recipe there are \(a\in A\) with \(a&gt;\sup A-\frac\varepsilon2\) and \(b\in B\) with \(b&gt;\sup B-\frac\varepsilon2\). Then \(a+b\in A+B\) and \(a+b&gt;\sup A+\sup B-\varepsilon\). Since this works for every \(\varepsilon&gt;0\), no number below \(\sup A+\sup B\) is an upper bound. ∎</p>
+    <p><strong>The catch:</strong> here \(a\) and \(b\) may be chosen <em>independently</em>. For functions, \(\sup_x(f(x)+g(x))\) has to use the <em>same</em> \(x\) in both terms, so the two suprema may be attained at different points and only "\(\le\)" survives — that is exactly Klausur WiSe18 A5 (worked in the exam section below).</p>
+  </details>
 </div>
 
 <div class="widget" id="supEpsW">
@@ -944,7 +1053,7 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
     <p><span class="src extra">Extra</span> Idea: zoom in by a factor \(n\) until the gap between \(a\) and \(b\) is longer than 1. Then an integer must fit inside it.</p>
     <ol class="steps">
       <li>By Archimedes choose \(n\in\mathbb N\) with \(n&gt;\frac1{b-a}\), so \(nb-na&gt;1\).</li>
-      <li>Let \(m\) be the smallest integer with \(m&gt;na\). (By Archimedes there are integers above \(na\), and among them a smallest one.) Minimality means \(m-1\le na\).</li>
+      <li>Let \(m\) be the smallest integer with \(m&gt;na\). Such an \(m\) exists: the set \(S=\{m\in\mathbb Z:m&gt;na\}\) is nonempty by Archimedes, and it is bounded below, because Archimedes applied to \(-na\) gives a \(k\in\mathbb N\) with \(-k&lt;na\), so every element of \(S\) is \(&gt;-k\). A nonempty set of integers that is bounded below has a smallest element. Minimality means \(m-1\le na\).</li>
       <li>Then \(na&lt;m\le na+1&lt;nb\).</li>
       <li>Divide by \(n\): \(a&lt;\frac mn&lt;b\), and \(r=\frac mn\in\mathbb Q\). <span class="qed">∎</span></li>
     </ol>
@@ -1212,13 +1321,14 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
 
 <div class="box exam">
   <div class="head"><span class="kind">Exam question</span><span class="src exam">Klausur WiSe18 · A5</span></div>
-  <p>Let \(f,g:D\to\mathbb R\) be bounded. (a) If \(\sup_{x\in D}|f(x)-g(x)|=0\), i.e. \(f=g\), then \(\sup(f+g)=\sup f+\sup g\). (b) Give an example with \(\sup(f+g)&lt;\sup f+\sup g\). (c) Show that always \(\sup_{x\in D}(f(x)+g(x))\le\sup_{x\in D}f(x)+\sup_{x\in D}g(x)\).</p>
+  <p>Let \(f,g:D\to\mathbb R\) with \(D\subseteq\mathbb R\). (a) Show: if \(\sup_{x\in D}|f(x)-g(x)|=0\), then \(\sup(f+g)=\sup f+\sup g\). (b) Give an example with \(\sup(f+g)&lt;\sup f+\sup g\). (c) Show that always \(\sup_{x\in D}(f(x)+g(x))\le\sup_{x\in D}f(x)+\sup_{x\in D}g(x)\).</p>
   <details class="proof"><summary>Solution</summary>
     <p>Notation: \(\sup_{x\in D}f(x)\) means the supremum of the set of values \(\{f(x):x\in D\}\).</p>
     <p><strong>(c) first, because it is the heart.</strong> Take any \(x\in D\). Since \(\sup f\) is an upper bound of all values of \(f\), \(f(x)\le\sup f\); likewise \(g(x)\le\sup g\). Adding: \(f(x)+g(x)\le\sup f+\sup g\). This holds for <em>every</em> \(x\), so \(\sup f+\sup g\) is an upper bound of \(\{f(x)+g(x):x\in D\}\). The supremum is the <em>least</em> upper bound, hence \(\sup(f+g)\le\sup f+\sup g\). ∎</p>
     <p><strong>(b)</strong> \(D=[0,1]\), \(f(x)=x\), \(g(x)=-x\). Then \(f+g\equiv0\), so \(\sup(f+g)=0\), but \(\sup f+\sup g=1+0=1\). The two suprema are reached at <em>different</em> points (\(f\) at \(x=1\), \(g\) at \(x=0\)); the sum cannot use both.</p>
     <p><strong>(a)</strong> If \(f=g\), then \(\sup(f+g)=\sup(2f)=2\sup f=\sup f+\sup g\) (multiplying all values by 2 multiplies every upper bound, and hence the least one, by 2).</p>
-    <p class="small">The reusable pattern from (c): <em>to show \(\sup S\le c\), show that \(c\) is an upper bound of \(S\).</em></p>
+    <p><strong>Where (a) starts:</strong> \(\sup_{x\in D}|f(x)-g(x)|=0\) means \(|f(x)-g(x)|\le0\) for every \(x\), and an absolute value is never negative, so \(f(x)=g(x)\) for all \(x\) — the exam's way of writing "\(f=g\)". Then the computation above applies.</p>
+    <p class="small">The reusable pattern from (c): <em>to show \(\sup S\le c\), show that \(c\) is an upper bound of \(S\).</em> The exam does not assume \(f\) and \(g\) bounded; with the conventions \(\sup=\infty\) for an unbounded set the statements stay true, and in an exam it is worth one line to say which case you are in.</p>
   </details>
 </div>
 
@@ -1234,6 +1344,10 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
     <p class="small">Alternative: write \(z=a+ib\); then \(a+ib=a^2+b^2\). Comparing imaginary parts gives \(b=0\), real parts \(a=a^2\).</p>
   </details>
 </div>
+
+<h3 id="c1-drill" data-toc="Drill: sup and inf">Drill: sup, inf, max, min</h3>
+<p>Ten sets of the kind the exam uses. Decide the four values before you click — and, for each bound, which of the two steps of the recipe you would write down.</p>
+<div class="widget" id="c1-drillW" style="border-color:var(--line)"></div>
 
 <div class="box method">
   <div class="head"><span class="kind">What you must be able to do after Chapter 1</span></div>
@@ -1305,7 +1419,7 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
   <div class="eyebrow">Analysis für Informatik · MA0902 · Chapter 2</div>
   <h1>Sequences<span class="de">Folgen</span></h1>
   <p class="lede">A sequence is an infinite list of numbers. This chapter makes precise what it means for such a list to <strong>approach</strong> a number, gives you the rules for computing limits, and proves the most important existence theorem of the course: <strong>monotone and bounded ⇒ convergent</strong>. With it we meet Euler's number \(e\).</p>
-  <p class="legend">Source labels: <span class="src">Skript 2.3</span> lecture script · <span class="src sheet">Blatt 2 · 2.2</span> exercise sheet · <span class="src exam">Klausur WiSe22</span> old exam · <span class="src extra">Extra</span> my addition.</p>
+  <p class="legend">Source labels: <span class="src">Skript 2.3</span> = stated in your lecture script · <span class="src sheet">Blatt 2 · 2.2</span> = exercise sheet · <span class="src exam">Klausur WiSe22</span> = old exam · <span class="src extra">Extra</span> = my own addition (intuition, a proof the script leaves out, or an extra example). A <b>§</b> marks a whole <em>section</em> of the script (§2.2 = Section 2.2) rather than a numbered result (2.2 = Beispiel 2.2).</p>
 </header>
 
 <section id="c2-map">
@@ -1739,7 +1853,7 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
   <p>The sequence \(a_n=\left(1+\frac1n\right)^n\) converges. Its limit
   \[e:=\lim_{n\to\infty}\left(1+\frac1n\right)^n=\sup_n\left(1+\frac1n\right)^n\approx2.718\]
   is <strong>Euler's number</strong> <span class="de-term">[Eulersche Zahl]</span>.</p>
-  <p class="small">Intuition: 100% interest per year, credited \(n\) times a year at \(\frac1n\) each. As \(n\to\infty\) (continuous compounding) the money grows by the factor \(e\).</p>
+  <p class="small">Intuition: 100% interest per year, credited \(n\) times a year at \(\frac1n\) each. As \(n\to\infty\) (continuous compounding) the money grows by the factor \(e\). With interest rate \(x\) instead of 1 the same computation gives \(\left(1+\frac xn\right)^n\to e^x\) — that is Lemma 6.24, proved in <a href="#c6-s63">Chapter 6</a> once the logarithm is available.</p>
   <details class="proof"><summary>Proof: increasing and bounded by 3</summary>
     <p><strong>Increasing.</strong> For \(n\ge2\), show \(\frac{a_n}{a_{n-1}}\ge1\). Rewrite:
     \[\frac{a_n}{a_{n-1}}=\left(\frac{1+\frac1n}{1+\frac1{n-1}}\right)^n\left(1+\frac1{n-1}\right),\qquad \frac{1+\frac1n}{1+\frac1{n-1}}=\frac{(n+1)(n-1)}{n^2}=1-\frac1{n^2}.\]
@@ -1771,6 +1885,7 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
 <div class="box ex">
   <div class="head"><span class="kind">Aufgabe 13.14 · a limit with a hidden cancellation</span><span class="src">Skript 13.14</span></div>
   <p>Does \(\lim_{x\to\infty}\sqrt x\left(\sqrt{x+1}-\sqrt x\right)\) exist?</p>
+  <p class="small">Here \(x\) runs through the <em>real</em> numbers, a limit defined only in Chapter 4. Nothing changes for us: read it as \(n\to\infty\), and the computation is the same — in fact "\(x\to\infty\)" follows from the sequence version, since \(f(x_n)\to L\) for every sequence \(x_n\to\infty\).</p>
   <details class="proof"><summary>Solution</summary>
   <p>Directly this is "\(\infty\cdot0\)", which says nothing. The standard trick for a difference of roots: multiply and divide by the <strong>conjugate</strong> \(\sqrt{x+1}+\sqrt x\), using \((u-v)(u+v)=u^2-v^2\):
   \[\sqrt x\left(\sqrt{x+1}-\sqrt x\right)=\sqrt x\cdot\frac{(x+1)-x}{\sqrt{x+1}+\sqrt x}=\frac{\sqrt x}{\sqrt{x+1}+\sqrt x}.\]
@@ -1820,6 +1935,10 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
     <li><strong>Asked "with the definition"?</strong> Write the quantifier statement, do the scratch work backwards, write it up forwards.</li>
   </ol>
 </div>
+<h3 id="c2-drill" data-toc="Drill: limits">Drill: which tool, and what is the limit?</h3>
+<p>Ten items in exam format. Decide the answer <em>and</em> the rule you would name in the exam.</p>
+<div class="widget" id="c2-drillW" style="border-color:var(--line)"></div>
+
 <div class="box method">
   <div class="head"><span class="kind">What you must be able to do after Chapter 2</span></div>
   <ul>
@@ -2157,7 +2276,7 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
 </div>
 <div class="box warn">
   <div class="head"><span class="kind">q = 1 really says nothing</span><span class="src">Skript, remark after 3.13</span></div>
-  <p>\(\sum\frac1k\) (divergent): \(\left|\frac{a_{k+1}}{a_k}\right|=\frac k{k+1}\to1\). \(\sum\frac1{k(k+1)}\) (convergent): \(\frac k{k+2}\to1\). Both have ratios \(&lt;1\) for every \(k\) and limit 1. So also "\(\left|\frac{a_{k+1}}{a_k}\right|&lt;1\) for all \(k\)" is <strong>not enough</strong>; you need the limit \(q&lt;1\). <strong>Consequence:</strong> for rational terms like \(\frac{k+1}{k^3}\) the ratio test always gives 1. Use comparison instead. The ratio test is made for <em>factorials and powers</em> (\(k!\), \(2^k\), \(k^k\)).</p>
+  <p>\(\sum\frac1k\) (divergent): \(\left|\frac{a_{k+1}}{a_k}\right|=\frac k{k+1}\to1\). \(\sum\frac1{k(k+1)}\) (convergent): \(\frac k{k+2}\to1\). Both have ratios \(&lt;1\) for every \(k\) and limit 1. So also "\(\left|\frac{a_{k+1}}{a_k}\right|&lt;1\) for all \(k\)" is <strong>not enough</strong>; you need the limit \(q&lt;1\). <strong>Consequence:</strong> for rational terms like \(\frac{k+1}{k^3}\) the ratio test always gives 1. Use comparison instead. The ratio test is made for <em>factorials and powers</em> (\(k!\), \(2^k\), \(k^k\)); for a term that is itself a \(k\)-th power, see the root test below.</p>
 </div>
 <div class="widget" id="c3-ratioW">
   <div class="wtitle">Try it · watch the ratios</div>
@@ -2189,6 +2308,13 @@ so that <em>every</em> element of the set turns up somewhere in the list — may
 <div class="box ex">
   <div class="head"><span class="kind">Example · the exponential series</span><span class="src">Skript 3.14</span></div>
   <p>\(\sum_{k=0}^\infty\frac{z^k}{k!}\) converges for <strong>every</strong> \(z\in\mathbb C\): \(\left|\frac{a_{k+1}}{a_k}\right|=\frac{|z|^{k+1}/(k+1)!}{|z|^k/k!}=\frac{|z|}{k+1}\to0&lt;1\). (The factorial eventually beats any power.)</p>
+</div>
+
+<div class="box ex">
+  <div class="head"><span class="kind">Not in your script: the root test <span class="de-term">[Wurzelkriterium]</span></span><span class="src extra">Extra</span></div>
+  <p>Many students know a second test of the same kind. If \(q=\lim_{k\to\infty}\sqrt[k]{|a_k|}\) exists, then \(q&lt;1\) ⇒ convergent (absolutely), \(q&gt;1\) ⇒ divergent, \(q=1\) ⇒ no conclusion. The proof is the one above with \(|a_k|\le(q+\varepsilon)^k\) straight away, so again the majorant is a geometric series.</p>
+  <p>It is the better tool when the term is a \(k\)-th power: \(\sum\left(\frac{k}{2k+1}\right)^k\) has \(\sqrt[k]{a_k}=\frac k{2k+1}\to\frac12&lt;1\), while the ratio test here is a mess. Where both give a limit, they give the same one.</p>
+  <p class="small"><strong>In the exam, use a test from the script</strong> (comparison, ratio, Leibniz) — those are what the solutions expect. The root idea does appear in the script, but only in Chapter 10: the radius of convergence formula of Cauchy–Hadamard, \(r=1/\limsup_k\sqrt[k]{|a_k|}\) (Satz 10.7), is the root test applied to \(\sum a_kx^k\).</p>
 </div>
 
 <h3 id="c3-leib" data-toc="Leibniz test">Alternating series: the Leibniz test <span class="de-term">[Leibnizkriterium]</span></h3>
@@ -6330,7 +6456,21 @@ G.inits.ch00 = function(sec){
     { q:'Which field cannot be ordered?', o:['ℚ','ℝ','ℂ','all of them can'], a:2,
       e:'In an ordered field every nonzero square is positive, so i² = −1 would be > 0, but 1 > 0 forces −1 < 0 (Skript Lemma 1.4).' },
     { q:'What distinguishes ℝ from ℚ, if both are ordered fields?', o:['ℝ has more elements','ℝ is commutative','ℝ satisfies the supremum axiom (completeness)','ℝ contains √−1'], a:2,
-      e:'Every nonempty set bounded above has a supremum in ℝ; in ℚ, {a : a² ≤ 2} does not (Skript Bemerkung 1.8). "More elements" is true but not the defining difference.' }
+      e:'Every nonempty set bounded above has a supremum in ℝ; in ℚ, {a : a² ≤ 2} does not (Skript Bemerkung 1.8). "More elements" is true but not the defining difference.' },
+    { q:'After the index shift j = k − 1, the sum Σ_{k=1}^{n} a_k becomes …', o:['Σ_{j=0}^{n−1} a_{j+1}','Σ_{j=1}^{n−1} a_j','Σ_{j=0}^{n} a_{j−1}','Σ_{j=2}^{n+1} a_{j+1}'], a:0,
+      e:'k = j + 1, so the term is a_{j+1}; k = 1 gives j = 0 and k = n gives j = n − 1. Both limits move, the number of terms stays n.' },
+    { q:'What is Σ_{k=3}^{2} a_k (upper limit below the lower one)?', o:['undefined','0','a₂ + a₃','1'], a:1,
+      e:'An empty sum is 0 by convention; an empty product is 1, which is why 0! = 1. This convention keeps formulas valid at the edge cases.' },
+    { q:'Which is true for all real numbers?', o:['(Σ_{k=1}^{n} a_k)(Σ_{k=1}^{n} b_k) = Σ_{k=1}^{n} a_k b_k','Σ_{k=1}^{n}(a_k + b_k) = Σ_{k=1}^{n} a_k + Σ_{k=1}^{n} b_k','Σ_{k=1}^{n} a_k² = (Σ_{k=1}^{n} a_k)²','Σ_{k=1}^{n} 1/a_k = 1/Σ_{k=1}^{n} a_k'], a:1,
+      e:'Sums are linear, so they split term by term. Multiplying two sums creates all mixed products a_i b_j — that is where the Cauchy product (Ch. 3) comes from. Test the others with n = 2.' },
+    { q:'f : ℝ → ℝ, f(x) = x². What is the preimage f⁻¹({4})?', o:['{2}','{−2, 2}','{16}','it does not exist, since f is not bijective'], a:1,
+      e:'f⁻¹(C) = {x : f(x) ∈ C} is defined for every map. Only the inverse *map* needs bijectivity.' },
+    { q:'"a_k → 0" is necessary but not sufficient for Σ a_k to converge. Which statement says the same?', o:['Σ a_k converges ⇒ a_k → 0, but not the other way round','a_k → 0 ⇒ Σ a_k converges','Σ a_k converges ⇔ a_k → 0','a_k → 0 and Σ a_k converges are unrelated'], a:0,
+      e:'"B necessary for A" means A ⇒ B. The harmonic series Σ 1/k shows the converse fails (Ch. 3).' },
+    { q:'An exam task says "Bei dieser Aufgabe sind alle Zwischenschritte zu begründen." That means …', o:['only the result is graded','you must justify every intermediate step','the task is a bonus task','you may use a formula sheet'], a:1,
+      e:'Name the theorem behind each step. The opposite instruction is "Bei dieser Aufgabe wird nur das Ergebnis bewertet" — there the answer alone earns the points.' },
+    { q:'"Geben Sie eine Stammfunktion an" asks you to …', o:['prove that an antiderivative exists','state an antiderivative (no derivation needed)','differentiate the function','sketch the function'], a:1,
+      e:'angeben = state. Stammfunktion = antiderivative (Ch. 8). A quick check by differentiating is still worth the ten seconds.' }
   ]);
 
   G.redraws.ch00 = function(){ if (G.mapRedraw) G.mapRedraw(); if (G.modRedraw) G.modRedraw(); };
@@ -6883,6 +7023,29 @@ G.inits.ch01 = function(sec){
   ];
   G.quiz(document.getElementById('quizW'), Q);
 
+  G.quiz(document.getElementById('c1-drillW'), [
+    { q:'M = { 2 − 1/n : n ∈ ℕ }. sup, inf, max, min?', o:['sup 2 (no max), inf = min = 1','sup = max = 2, inf = 1 (no min)','sup 2, inf 0, no max, no min','sup = max = 2, inf = min = 1'], a:0,
+      e:'Increasing: 1, 1.5, 1.667, … → 2. First element 1 is inf and min; 2 is an upper bound and, for every ε > 0, 2 − 1/n > 2 − ε once n > 1/ε (Archimedes), so sup = 2 — never attained, so no maximum.' },
+    { q:'M = { (−1)ⁿ (1 + 1/n) : n ∈ ℕ }. Which is right?', o:['sup = max = 2, inf = min = −2','sup = max = 3/2 (at n = 2), inf = min = −2 (at n = 1)','sup = 1, inf = −1, neither attained','sup = 3/2 and inf = −2, but neither is attained'], a:1,
+      e:'Even n give 1 + 1/n, largest at n = 2: 3/2. Odd n give −(1 + 1/n), smallest at n = 1: −2. Both extremes are elements of the set, so they are maximum and minimum. The value 2 never occurs, since 1 + 1/n = 2 only for n = 1, and n = 1 is odd.' },
+    { q:'M = { x ∈ ℝ : x² < 5 }. sup M = ?', o:['5','√5, attained','√5, not attained','∞'], a:2,
+      e:'x² < 5 ⇔ −√5 < x < √5, the open interval. √5 is the least upper bound but is not an element, so there is no maximum.' },
+    { q:'M = { x ∈ ℚ : x² < 5 }. Does sup M exist?', o:['no, because M has no upper bound','yes, in ℝ it is √5; inside ℚ there is no least upper bound','yes, it is 5','yes, it is the largest rational with x² < 5'], a:1,
+      e:'This is Bemerkung 1.8 with 5 instead of 2: the supremum axiom holds in ℝ, not in ℚ. There is no largest rational below √5, since ℚ is dense (Satz 1.10).' },
+    { q:'M = { 1/n − 1/m : n, m ∈ ℕ }. sup and inf?', o:['sup = 1, inf = −1, both attained','sup = 1, inf = −1, neither attained','sup = max = 1, inf = min = −1 is wrong; both are ±1/2','sup = ∞, inf = −∞'], a:1,
+      e:'1/n ≤ 1 and 1/m > 0, so every element is < 1; taking n = 1 and m large makes 1 − 1/m as close to 1 as you like. Symmetrically for −1. Neither value occurs, because 1/m = 0 is impossible.' },
+    { q:'M = { n/(n+2) : n ∈ ℕ } (Klausur WiSe19). min M = ?', o:['0','1/3','1/2','there is no minimum'], a:1,
+      e:'n/(n+2) = 1 − 2/(n+2) increases, so the first element n = 1 gives the minimum 1/3. The supremum is 1 and is not attained.' },
+    { q:'A set M is bounded above and s = sup M. Which statement is exactly "s is the LEAST upper bound"?', o:['a ≤ s for all a ∈ M','for every ε > 0 there is a ∈ M with a > s − ε','s ∈ M','for every a ∈ M there is ε > 0 with a < s − ε'], a:1,
+      e:'Step 1 of the recipe says s is an upper bound; step 2 — this option — says nothing smaller is one. Together they characterise the supremum.' },
+    { q:'M = (0, 3] ∪ {5}. sup, inf, max, min?', o:['sup = max = 5, inf = 0, no min','sup = max = 3, inf = 0, no min','sup = max = 5, inf = min = 0','sup = 5, inf = 0, no max, no min'], a:0,
+      e:'The union rule: sup = max{sup(0,3], sup{5}} = max{3, 5} = 5, and 5 ∈ M, so it is the maximum. 0 is the greatest lower bound but is excluded by the round bracket.' },
+    { q:'For nonempty bounded A, B: sup(A + B) = ?', o:['sup A + sup B','max{sup A, sup B}','sup A · sup B','sup A + inf B'], a:0,
+      e:'In A + B the two elements are chosen independently, so both suprema can be approached at once. For functions f + g, where the same x must be used, only sup(f+g) ≤ sup f + sup g holds (WiSe18 A5).' },
+    { q:'M = { n ∈ ℕ : n is odd } (Klausur SoSe19 A1a). Which is correct?', o:['sup = ∞, inf = min = 1, no max','sup = ∞, inf = min = 0, no max','sup = max = ∞, inf = min = 1','no sup, no inf'], a:0,
+      e:'With ℕ = {1, 2, 3, …} the smallest odd number is 1, and it is in the set. Unbounded above, so sup = ∞ by convention and there is no maximum. (The official solution says 0 because that exam counted 0 ∈ ℕ.)' }
+  ]);
+
   function redrawAll(){ drawSet(); drawTri(); drawNorm(); ['qRedraw','seRedraw','cxRedraw','denRedraw'].forEach(function(k){ if (G[k]) G[k](); }); }
   redrawAll();
   G.redraws.ch01 = redrawAll;
@@ -7076,6 +7239,29 @@ G.inits.ch02 = function(sec){
   bN.addEventListener('input', ber); bX.addEventListener('input', ber);
 
   /* ---------- quiz ---------- */
+  G.quiz(document.getElementById('c2-drillW'), [
+    { q:'lim (5n³ − 2n)/(3n³ + n²) = ?', o:['0','5/3','∞','does not exist'], a:1,
+      e:'Same degree ⇒ ratio of the leading coefficients. Write it as dividing by n³: (5 − 2/n²)/(3 + 1/n) → 5/3 (sum rule, then quotient rule with denominator 3 ≠ 0).' },
+    { q:'lim (n² + 5)/(n³ − 1) = ?', o:['0','1','∞','1/5'], a:0,
+      e:'Numerator degree 2 < denominator degree 3. Divide by n³: (1/n + 5/n³)/(1 − 1/n³) → 0/1 = 0.' },
+    { q:'lim (√(n+3) − √n) = ?', o:['0','3','∞','3/2'], a:0,
+      e:'"∞ − ∞": multiply by the conjugate. (n+3−n)/(√(n+3)+√n) = 3/(√(n+3)+√n) ≤ 3/(2√n) → 0, then squeeze.' },
+    { q:'lim n·(√(n+3) − √n) = ?', o:['0','3/2','∞','3'], a:2,
+      e:'By the same conjugate step this is 3n/(√(n+3)+√n) ≥ 3n/(2√(n+3)) → ∞. Compare with the previous item: multiplying by n changes everything, so always do the conjugate step first.' },
+    { q:'lim ((−1)ⁿ n)/(n² + 1) = ?', o:['does not exist','0','1','−1'], a:1,
+      e:'"Null sequence × bounded" (Blatt 2.1c): n/(n²+1) → 0 and |(−1)ⁿ| ≤ 1. The product rule (Satz 2.6c) would not apply, since (−1)ⁿ has no limit.' },
+    { q:'aₙ = (0.9)ⁿ · n⁵. Behaviour?', o:['→ ∞','→ 0','→ 1','divergent, no limit'], a:1,
+      e:'Exponential decay beats every fixed power (Blatt 3.1d for n·qⁿ, in general Satz 5.6). The powers n⁵ lose against 0.9ⁿ.' },
+    { q:'a₁ = 1, aₙ₊₁ = √(2 + aₙ). What is the right first step?', o:['set a = √(2 + a) and solve','show the sequence is increasing and bounded above, then pass to the limit','compute a₁₀₀ numerically','apply the quotient rule'], a:1,
+      e:'Solving the fixed-point equation only makes sense once the limit is known to exist — otherwise you "prove" nonsense (aₙ₊₁ = 2aₙ gives a = 0). With existence secured, a = √(2+a) gives a = 2.' },
+    { q:'aₙ → 3 and bₙ → 0 with bₙ > 0. What is lim aₙ/bₙ?', o:['0','3','∞','the rules do not apply; look at the sequence itself'], a:3,
+      e:'The quotient rule needs the limit of the denominator to be ≠ 0. Here aₙ/bₙ → ∞ because aₙ is eventually ≥ 2 and 1/bₙ → ∞ — but that has to be argued, not quoted.' },
+    { q:'Which sequence is bounded but divergent?', o:['(−1)ⁿ(1 + 1/n)','n/(n+1)','(−1)ⁿ/n','n²/(n²+1)'], a:0,
+      e:'Its terms approach +1 and −1 alternately, so no single limit — while |aₙ| ≤ 2. "Bounded" alone never proves convergence (the converse of Satz 2.12 is false).' },
+    { q:'Show aₙ = (2n+1)/n → 2 with the definition. Which n₀ works for a given ε > 0?', o:['n₀ > 1/ε','n₀ > 2/ε','n₀ > ε','any n₀ ≥ 1'], a:0,
+      e:'|aₙ − 2| = |2 + 1/n − 2| = 1/n < ε ⇔ n > 1/ε. Such an n₀ exists by Archimedes (Satz 1.9) — say so in the exam.' }
+  ]);
+
   G.quiz(document.getElementById('c2-quizW'), [
     { q:'In "∀ε > 0 ∃n₀ ∀n ≥ n₀: |aₙ − a| < ε", which statement is correct?', o:['n₀ must work for all ε at once','n₀ may depend on ε','ε may depend on n','n₀ must be the smallest possible index'], a:1,
       e:'∃n₀ comes after ∀ε, so you choose n₀ after seeing ε. Any working n₀ is fine, not only the smallest.' },
