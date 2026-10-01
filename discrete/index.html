@@ -836,6 +836,13 @@ window.MathJax={
   <a class="ana" href="../analysis/index.html#c4-s41">Analysis 4.1 — Continuity</a>.</p>
 
   <h4 id="f-three" data-toc="The three limits">The three limits DPT actually needs</h4>
+  <div class="box ex">
+    <p class="bt">Warm-up before the rule — just multiply it out <span class="src extra">My addition</span></p>
+    <p>Set \(x=1\) and compute \(\bigl(1+\tfrac1n\bigr)^{n}\) with a calculator: \(n=1\) gives \(2^{1}=2\);
+    \(n=2\) gives \(1.5^{2}=2.25\); \(n=4\) gives \(1.25^{4}=2.44140625\); \(n=12\) gives \(2.6130353\).
+    The numbers climb towards \(2.7182818\) and never pass it — and that number is \(e\). The rule below is
+    that observation, with \(x\) in place of \(1\).</p>
+  </div>
   <div class="box thm">
     <p class="bt">Three limits — learn these as facts <span class="src ana">Analysis 2.2, 6.3</span></p>
     \[ \Bigl(1+\frac{x}{n}\Bigr)^{\!n}\ \xrightarrow[n\to\infty]{}\ e^{x}
@@ -876,6 +883,32 @@ window.MathJax={
   <a class="ana" href="../analysis/index.html#c2-e">Analysis 2.2 — Euler's number \(e\)</a>,
   <a class="ana" href="../analysis/index.html#c6-s63">Analysis 6.3 — Rules of differentiation</a> (where the limit is proved).</p>
 
+  <div class="widget" id="f-w-limit">
+    <h4>Widget — watching (1 + x/n)ⁿ climb to eˣ <span class="src extra">My addition</span></h4>
+    <p class="wsub">Every dot is one term of the sequence: the dot above the index \(m\) sits at height
+    \(\bigl(1+\tfrac xm\bigr)^{m}\). The dashed line is the limit \(e^{x}\), and the filled dot is the term
+    at the \(n\) you chose. Drag \(n\) to the right and the dots settle onto the line; the readout prints the
+    value, the limit and the gap between them, and what the gap becomes at twice as many steps. The second
+    mode is the one §1.2 needs: \(\bigl(1-\tfrac\lambda n\bigr)^{n}\to e^{-\lambda}\), the engine of the
+    Poisson limit theorem (Thm 1.42). The index axis is logarithmic so that all 500 steps fit on it.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which limit">
+        <button type="button" data-lm="e" aria-pressed="true">(1 + x/n)ⁿ → exp(x)</button>
+        <button type="button" data-lm="poi" aria-pressed="false">(1 − λ/n)ⁿ → exp(−λ) · Thm 1.42</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-lim-n">steps n</label>
+        <input type="range" id="f-lim-n" min="1" max="500" value="40" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-lim-xc"><label for="f-lim-x">x</label>
+        <input type="range" id="f-lim-x" min="-30" max="30" value="10" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-lim-lc"><label for="f-lim-l">λ</label>
+        <input type="range" id="f-lim-l" min="2" max="50" value="20" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 240" role="img" aria-label="The terms of the sequence (1 + x/m) to the power m plotted against a logarithmic index axis, with the limit drawn as a dashed line"></svg>
+    <div class="readout"></div>
+  </div>
+
   <h4 id="f-series" data-toc="Series">Series: geometric, exponential, telescoping</h4>
   <p>A <b>series</b> [Reihe] \(\sum_{k=0}^{\infty}a_k\) is the limit of its <b>partial sums</b>
   \(s_n=\sum_{k=0}^{n}a_k\). If \(s_n\) converges, that limit is the value of the series. When every
@@ -889,6 +922,15 @@ window.MathJax={
        \text{infinite:}\quad \sum_{j=0}^{\infty}q^{\,j}=\frac{1}{1-q}\quad (|q|&lt;1). \]
     <p>Shifted start: \(\sum_{j=1}^{\infty}q^{\,j}=\dfrac{q}{1-q}\) — pull one factor \(q\) out and reuse the
     formula. Getting the starting index right is where most marks are lost.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="bt">Warm-up before the DPT version — halves <span class="src extra">My addition</span></p>
+    <p>Add \(\tfrac12+\tfrac14+\tfrac18=\tfrac78=0.875\). Each new term covers half of what is still missing,
+    so after three terms \(\tfrac18\) is missing, after four \(\tfrac1{16}\), and the running total creeps up
+    to \(1\) without ever reaching it.</p>
+    <p>That is the shifted formula above with \(q=\tfrac12\):
+    \(\sum_{j\ge1}2^{-j}=\tfrac{q}{1-q}=\tfrac{1/2}{1/2}=1\). ✓</p>
   </div>
 
   <div class="box thm">
@@ -915,6 +957,15 @@ window.MathJax={
     which is the previous answer minus the \(j=0\) term. Finite case \(q=\tfrac13\), \(n=4\):
     \(1+\tfrac13+\tfrac19+\tfrac1{27}=\tfrac{40}{27}=1.4815\), and
     \(\tfrac{1-(1/3)^4}{1-1/3}=\tfrac{80/81}{2/3}=1.4815\). ✓</p>
+  </div>
+
+  <div class="box ex">
+    <p class="bt">Warm-up before the DPT version — four terms of \(e\) <span class="src extra">My addition</span></p>
+    <p>Take \(x=1\) and add the first four terms by hand:
+    \(1+1+\tfrac12+\tfrac16=2.6666667\), against \(e=2.7182818\).</p>
+    <p>The next term \(\tfrac1{24}\) lifts it to \(2.7083333\), the one after that \(\tfrac1{120}\) to
+    \(2.7166667\). The terms shrink fast because the denominator \(k!\) grows faster than anything else in
+    sight. The formula below is this sum carried out forever, with \(x\) in place of \(1\).</p>
   </div>
 
   <div class="box thm">
@@ -944,6 +995,35 @@ window.MathJax={
     <p>The constant \(e^{-\lambda}\) came out of the sum because it does not depend on \(k\); then the
     remaining sum is the exponential series with \(x=\lambda\). Numerical check at \(\lambda=3\), summing
     \(k=0\) to \(59\): the total is \(1.0000000\).</p>
+  </div>
+
+  <div class="widget" id="f-w-series">
+    <h4>Widget — partial sums climbing to their limit <span class="src extra">My addition</span></h4>
+    <p class="wsub">Bar number \(N\) is the partial sum \(s_N=a_1+\dots+a_N\), drawn as a fraction of the
+    limit; the dashed line across the top <b>is</b> the limit, so a bar touching it means the series has
+    arrived. Three series, the three this course needs: the <b>geometric</b> one \(\sum q^{j}\to\frac1{1-q}\),
+    the <b>differentiated geometric</b> one \(\sum_{k\ge1}kq^{k-1}\to\frac1{(1-q)^{2}}\) that produces
+    \(\E[X]=1/p\) and \(\Var[X]\) for \(\Geo(p)\) (Lemma 2.26(v)), and the <b>exponential</b> one
+    \(\sum\lambda^{k}/k!\to e^{\lambda}\) that makes the Poisson pmf sum to \(1\). Watch the gap in the
+    readout: at \(q=0.95\) even forty terms are nowhere near the limit, while the exponential series is
+    finished after about ten.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which series">
+        <button type="button" data-sr="geo" aria-pressed="true">geometric Σ qʲ</button>
+        <button type="button" data-sr="dgeo" aria-pressed="false">differentiated Σ k qᵏ⁻¹</button>
+        <button type="button" data-sr="exp" aria-pressed="false">exponential Σ λᵏ/k!</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-ser-n">terms N</label>
+        <input type="range" id="f-ser-n" min="1" max="40" value="12" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-ser-qc"><label for="f-ser-q">ratio q</label>
+        <input type="range" id="f-ser-q" min="5" max="95" value="50" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-ser-lc"><label for="f-ser-l">λ</label>
+        <input type="range" id="f-ser-l" min="1" max="50" value="20" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 230" role="img" aria-label="Bars giving the partial sums of a series, with the limit drawn as a dashed line across the top"></svg>
+    <div class="readout"></div>
   </div>
 
   <div class="box method">
@@ -1459,6 +1539,27 @@ window.MathJax={
   </div>
 
   <div class="box ex">
+    <p class="bt">Warm-up before the exam versions — a straight line on a uniform <span class="src extra">My addition</span></p>
+    <p>\(X\sim\Unif(0,1)\): density \(p_X(x)=1\) for \(x\) between \(0\) and \(1\), and \(0\) outside. Let
+    \(Y=g(X)=3X+2\). Run the four steps on numbers small enough to check by eye.</p>
+    <ol>
+      <li><b>Invert:</b> \(y=3x+2\). Subtract \(2\): \(y-2=3x\). Divide by \(3\): \(x=\tfrac{y-2}{3}\). So
+        \(g^{-1}(y)=\tfrac{y-2}{3}\).</li>
+      <li><b>Differentiate in \(y\):</b> \(\tfrac{\mathrm d}{\mathrm dy}\tfrac{y-2}{3}=\tfrac13\) — the slope
+        of a straight line is the same everywhere.</li>
+      <li><b>Absolute value:</b> \(\bigl|\tfrac13\bigr|=\tfrac13\).</li>
+      <li><b>Support:</b> \(x=0\) gives \(y=2\), \(x=1\) gives \(y=5\), and \(3x+2\) increases, so the whole
+        of \([0,1]\) lands on \([2,5]\).</li>
+    </ol>
+    <p>Put the pieces together: \(p_Y(y)=p_X\bigl(\tfrac{y-2}{3}\bigr)\cdot\tfrac13=1\cdot\tfrac13=\tfrac13\)
+    for \(y\) in \([2,5]\), and \(0\) outside. <b>Check without any formula:</b> stretching an interval of
+    length \(1\) into one of length \(3\) must divide the height by \(3\) to keep the area at \(1\), and
+    \(3\cdot\tfrac13=1\) ✓. That division by the stretch factor <i>is</i> the \(|(g^{-1})'|\) in the
+    formula — the two exam versions below only replace the straight line by a curve, so that the stretch
+    factor changes from place to place.</p>
+  </div>
+
+  <div class="box ex">
     <p class="bt">Worked, \(g\) <b>increasing</b> — \(Y=\ln X\) <span class="src exam">SoSe25 · P3d</span></p>
     <p>\(X\) has the density \(p_X(x)=x/2\) on \([0,2]\) and \(0\) elsewhere (that is part (a) of the same
     problem, worked in <a href="#ana-fast/f-int">the integration section</a>). Let \(Y=g(X)=\ln X\).</p>
@@ -1510,6 +1611,35 @@ window.MathJax={
     \(\P(X^{2}\le y)=\P(-\sqrt y\le X\le\sqrt y)=F_X(\sqrt y)-F_X(-\sqrt y)\) collects both before you
     differentiate.</p>
   </div>
+  <div class="widget" id="f-w-transform">
+    <h4>Widget — the transformation formula, panel by panel <span class="src extra">My addition</span></h4>
+    <p class="wsub">Three pictures, read left to right: the density of \(X\), the map \(g\), the density of
+    \(Y=g(X)\). The thick bar on each horizontal axis is the <b>support</b> — the set where the density is
+    not \(0\) — and the thick bar on the vertical axis of the middle panel is that same set pushed through
+    \(g\). Watching those two bars is the point of this widget: the support is a separate step of the recipe
+    and a separate credit on the paper. The \(y\)-slider picks one point of the new support; the readout
+    prints \(g^{-1}(y)\), the derivative factor \(|(g^{-1})'(y)|\), the old density at \(g^{-1}(y)\) and
+    their product \(p_Y(y)\), which is the dot on the right panel. The fourth map, \(y=x^{2}\), is the one
+    the formula <b>cannot</b> do: two different \(x\) give the same \(y\), and the widget shows the formula
+    coming out exactly half the truth.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which map">
+        <button type="button" data-tg="ln" aria-pressed="true">y = ln x · SoSe25 P3d</button>
+        <button type="button" data-tg="ex" aria-pressed="false">y = exp(−λx) · WiSe25 P3a</button>
+        <button type="button" data-tg="sq" aria-pressed="false">y = x² · not monotone</button>
+        <button type="button" data-tg="af" aria-pressed="false">y = ax + 1</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl" id="f-tr-pc"><label for="f-tr-p">parameter</label>
+        <input type="range" id="f-tr-p" min="0" max="100" value="50" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-tr-y">the point y</label>
+        <input type="range" id="f-tr-y" min="0" max="100" value="55" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 252" role="img" aria-label="Three panels: the density of X with its support marked, the graph of the map g with the support and its image marked on the two axes, and the resulting density of Y with its support marked"></svg>
+    <div class="readout"></div>
+  </div>
+
   <p class="mine"><b>Fuller treatment:</b>
   <a class="ana" href="../analysis/index.html#c5-s51">Analysis 5.1 — Inverse functions</a> (how \(g^{-1}\) is found and when it
   exists), <a class="ana" href="../analysis/index.html#c6-s63">Analysis 6.3 — Rules of differentiation</a> (the inverse-function
@@ -1591,6 +1721,22 @@ window.MathJax={
   </div>
 
   <div class="box ex">
+    <p class="bt">Warm-up before the likelihoods — a parabola, and where its slope is \(0\) <span class="src extra">My addition</span></p>
+    <p>Forget probability for a moment and maximise \(f(x)=-x^{2}+6x-4\), a downward parabola. The
+    <b>derivative</b> \(f'(x)\) is the slope of the graph at \(x\); differentiating term by term with the
+    power rule \((x^{n})'=nx^{n-1}\) gives \(f'(x)=-2x+6\).</p>
+    <p><b>Set it to zero:</b> \(-2x+6=0\), add \(2x\) to both sides to get \(6=2x\), divide by \(2\) to get
+    \(x=3\). <b>Is it a maximum?</b> Differentiate once more: \(f''(x)=-2\), which is negative for every
+    \(x\), so the graph bends downwards everywhere and \(x=3\) is the top. The value there is
+    \(f(3)=-9+18-4=5\).</p>
+    <p><b>Check by hand at neighbouring points:</b> \(f(2)=-4+12-4=4\) and \(f(4)=-16+24-4=4\) — both below
+    \(5\), with the slope \(f'(2)=+2\) (still climbing) on the left and \(f'(4)=-2\) (already falling) on the
+    right. That sign change from \(+\) to \(-\) is the sign-change test of step 5, run on a function small
+    enough to see. Everything below is this same calculation with \(\ell\) in place of \(f\) and \(\theta\)
+    in place of \(x\).</p>
+  </div>
+
+  <div class="box ex">
     <p class="bt">Worked example 1 (kind A) — the rainfall mle, with a <i>global</i> argument <span class="src exam">WiSe25 · P4a</span></p>
     <p>Model: \(p_\theta(x)=\theta^{-2}x e^{-x/\theta}\) for \(x&gt;0\), parameter \(\theta&gt;0\).
     From <a href="#ana-fast/f-diff">micro-example 5</a>, with \(s:=\sum_{i=1}^{n}x_i\),</p>
@@ -1654,6 +1800,35 @@ window.MathJax={
     <p><b>3. Reaching for the derivative when the support depends on the parameter.</b> The tell is an
     indicator \(\chi_{[c,\infty)}(x_i)\) or a condition like \(\theta\ge\max_i x_i\) inside the likelihood.
     The moment you see one, switch to the monotonicity argument of worked example 2.</p>
+  </div>
+
+  <div class="widget" id="f-w-mle">
+    <h4>Widget — watching the slope of the log-likelihood reach zero (or not) <span class="src extra">My addition</span></h4>
+    <p class="wsub">The curve is the log-likelihood \(\ell(\theta)=\ln L(\theta)\) for the data printed under
+    it; the straight line through the dot is the <b>tangent</b>, whose slope is \(\ell'(\theta)\). Drag the
+    parameter slider and watch the tangent tilt: in the two <b>kind A</b> cases it is rising on the left,
+    flat exactly at \(\hat\theta\), falling on the right — that flat moment is the equation
+    \(\ell'(\theta)=0\) you solve on paper. In the <b>uniform</b> case the tangent never becomes flat: the
+    slope is \(-m/\theta\), negative for every allowed \(\theta\), and the shaded band on the left is where
+    the likelihood is \(0\) (one observation would lie outside \([0,\theta]\)), so \(\ell\) is not even
+    defined there. The best allowed \(\theta\) is the left edge of the band, \(\max_i x_i\) — a boundary
+    maximum, which no derivative can find. The second slider uses only the first \(m\) data points, so you
+    can watch the peak sharpen as the sample grows.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which model">
+        <button type="button" data-ml="poi" aria-pressed="true">Poisson λ · kind A</button>
+        <button type="button" data-ml="ber" aria-pressed="false">Bernoulli p · kind A</button>
+        <button type="button" data-ml="uni" aria-pressed="false">Uniform(0,θ) · kind B</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-ml-t">parameter</label>
+        <input type="range" id="f-ml-t" min="0" max="100" value="60" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-ml-m">data points used m</label>
+        <input type="range" id="f-ml-m" min="2" max="10" value="10" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 240" role="img" aria-label="The log-likelihood as a curve against the parameter, with the tangent line at the chosen parameter value and a marker at the maximiser"></svg>
+    <div class="readout"></div>
   </div>
 
   <div class="box method" id="f-partial">
@@ -1827,6 +2002,16 @@ window.MathJax={
   spotting it turns a three-line calculation into the word "odd".</p>
 
   <div class="box ex">
+    <p class="bt">Warm-up before the DPT example — a rectangle <span class="src extra">My addition</span></p>
+    <p>Take the flat function \(p(x)=c\) on \([0,2]\). Its graph encloses a rectangle of width \(2\) and
+    height \(c\), so the area is \(\int_0^2 c\,\mathrm dx=2c\) — no calculus needed, it is width times
+    height.</p>
+    <p>"Choose \(c\) so that the density integrates to \(1\)" then reads \(2c=1\), so \(c=\tfrac12\), which is
+    the \(\Unif(0,2)\) density. The example below is the same question with a sloping roof instead of a flat
+    one, so the area needs the power rule instead of multiplication.</p>
+  </div>
+
+  <div class="box ex">
     <p class="bt">Worked example — a whole density problem, start to finish <span class="src exam">SoSe25 · P3a–c</span></p>
     <p>\(p_X(x)=\dfrac{x}{c}\) for \(x\in[0,2]\) and \(0\) otherwise, for some constant \(c\in\R\).</p>
     <p><b>(a) Find \(c\).</b> Impose "total area \(=1\)", integrating over the support \([0,2]\) only, and
@@ -1864,6 +2049,42 @@ window.MathJax={
   <a href="#pre-meas/pm-riemann">B4 also explains</a> why for every density in this course the two notions
   give the same number. In DPT: <a href="#ch13/c3-primer">§1.3 primer</a>,
   <a href="#ch21/d1-exp">§2.1 expectation</a>, <a href="#exam/x-tt3">TT3 on the exam page</a>.</p>
+
+  <div class="widget" id="f-w-area">
+    <h4>Widget — the integral as the shaded area, and the normalising constant <span class="src extra">My addition</span></h4>
+    <p class="wsub">The five shapes are the ones DPT sets. In <b>interval</b> mode the sliders \(a\) and \(b\)
+    move the ends of the shaded region and the readout prints \(\int_a^b c\,p(x)\,\mathrm dx\) both as a
+    formula and as a number — that is \(\P(a\le X\le b)\) once the total area is \(1\). In <b>normalise</b>
+    mode the region is the whole support and the bar under the picture compares the shaded area with the
+    target \(1\): slide \(c\) until the bar reaches the mark, and the readout prints the exact solution
+    \(c=1/\!\int_{\text{support}}p\). The shape slider changes \(\lambda\), \(\sigma\), the triangle width
+    \(w\) or the exponent \(p\), whichever that shape has.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Shape">
+        <button type="button" data-sh="lin" aria-pressed="true">c·x on [0,2]</button>
+        <button type="button" data-sh="exp" aria-pressed="false">c·exp(−λx)</button>
+        <button type="button" data-sh="norm" aria-pressed="false">normal</button>
+        <button type="button" data-sh="tri" aria-pressed="false">triangle</button>
+        <button type="button" data-sh="pow" aria-pressed="false">power law</button>
+      </div>
+      <div class="seg" role="group" aria-label="Mode">
+        <button type="button" data-am="iv" aria-pressed="true">interval [a,b]</button>
+        <button type="button" data-am="nm" aria-pressed="false">normalise: choose c</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-ar-c">constant c</label>
+        <input type="range" id="f-ar-c" min="2" max="300" value="100" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-ar-pc"><label for="f-ar-p">shape parameter</label>
+        <input type="range" id="f-ar-p" min="0" max="100" value="50" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-ar-ac"><label for="f-ar-a">lower limit a</label>
+        <input type="range" id="f-ar-a" min="0" max="100" value="20" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-ar-bc"><label for="f-ar-b">upper limit b</label>
+        <input type="range" id="f-ar-b" min="0" max="100" value="75" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 250" role="img" aria-label="A density-shaped curve with the area between two movable limits shaded, and a bar comparing the total area with one"></svg>
+    <div class="readout"></div>
+  </div>
 
   <h4 id="f-improper" data-toc="Improper integrals">Improper integrals (to \(\infty\)) and when they diverge</h4>
   <p>Most DPT integrals run out to \(\infty\), or start at a point where the integrand blows up. Such an
@@ -1994,6 +2215,16 @@ window.MathJax={
   </div>
 
   <div class="box ex">
+    <p class="bt">Warm-up before the DPT substitutions — small numbers <span class="src extra">My addition</span></p>
+    <p>Compute \(\int_0^1(2x+1)^{2}\,\mathrm dx\) with \(u=2x+1\). Then \(\mathrm du=2\,\mathrm dx\), so
+    \(\mathrm dx=\tfrac12\,\mathrm du\), and both limits move: \(x=0\mapsto u=1\) and \(x=1\mapsto u=3\).</p>
+    <p>\(\displaystyle\int_0^1(2x+1)^{2}\mathrm dx=\frac12\int_1^{3}u^{2}\,\mathrm du
+    =\frac12\Bigl[\frac{u^{3}}{3}\Bigr]_1^{3}=\frac12\cdot\frac{27-1}{3}=\frac{13}{3}\).
+    <b>Check by multiplying out instead:</b> \(\int_0^1(4x^{2}+4x+1)\mathrm dx=\tfrac43+2+1=\tfrac{13}3
+    =4.3333333\) ✓ — same answer, more work.</p>
+  </div>
+
+  <div class="box ex">
     <p class="bt">Substitution examples <span class="src extra">My addition</span></p>
     <p><b>S1 — the exponential normalisation, \(u=\lambda x\).</b> With \(\mathrm du=\lambda\,\mathrm dx\),
     the limits \(0\mapsto0\) and \(\infty\mapsto\infty\):</p>
@@ -2039,6 +2270,33 @@ window.MathJax={
     absorbing the sign into the swapped limits. <b>Check:</b> simulating \(400\,000\) draws with
     \(\lambda=1.3\) gives \(U\) a sample mean \(0.5005\) and sample variance \(0.0833\), against
     \(\tfrac12=0.5\) and \(\tfrac1{12}=0.0833\) for \(\Unif(0,1)\). ✓</p>
+  </div>
+
+  <div class="widget" id="f-w-sub">
+    <h4>Widget — what a substitution does to the picture <span class="src extra">My addition</span></h4>
+    <p class="wsub">Left: the original integrand on the \(x\)-axis, with the region between \(a\) and \(b\)
+    shaded. Right: the integrand after the substitution on the \(u\)-axis (or \(z\)-axis), shaded between the
+    <b>moved</b> limits. The two shapes are different and the two shaded <b>areas</b> are the same — that is
+    the whole content of the substitution rule, and the readout checks it numerically every time you move a
+    slider. The three substitutions are the ones DPT actually uses: \(u=\lambda x\) for the exponential
+    density, \(z=(x-\mu)/\sigma\) for standardising a normal, and \(u=x^{2}/2\) for the Gaussian integral.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which substitution">
+        <button type="button" data-sb="lam" aria-pressed="true">u = λx</button>
+        <button type="button" data-sb="std" aria-pressed="false">z = (x − μ)/σ</button>
+        <button type="button" data-sb="sq" aria-pressed="false">u = x²/2</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-sub-a">lower limit a</label>
+        <input type="range" id="f-sub-a" min="0" max="100" value="10" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-sub-b">upper limit b</label>
+        <input type="range" id="f-sub-b" min="0" max="100" value="70" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-sub-pc"><label for="f-sub-p">parameter</label>
+        <input type="range" id="f-sub-p" min="0" max="100" value="50" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 240" role="img" aria-label="Two panels side by side: the integrand before the substitution with its shaded region, and the integrand after it with the moved limits"></svg>
+    <div class="readout"></div>
   </div>
 
   <div class="box method" id="f-trig">
@@ -2228,6 +2486,51 @@ window.MathJax={
     the familiar \(5\%\).</p>
   </div>
   <div class="box ex">
+    <p class="bt">Warm-up before the exam line — what \(2\Phi(-1)\) is, and why the halves are equal <span class="src extra">My addition</span></p>
+    <p>Take \(Z\sim\mathcal N(0,1)\) and \(a=1\). The number \(\Phi(-1)\) is, by the definition of a cdf, the
+    probability \(\P(Z\le-1)\): the area under the bell curve to the <b>left</b> of \(-1\). A table (or
+    scipy) gives \(\Phi(-1)=0.1586553\).</p>
+    <p><b>Why the right tail has the same area.</b> The bell curve \(\varphi(z)=\tfrac1{\sqrt{2\pi}}e^{-z^{2}/2}\)
+    contains \(z\) only through \(z^{2}\), and \((-z)^{2}=z^{2}\), so \(\varphi(-z)=\varphi(z)\): the picture
+    is the mirror image of itself in the vertical axis. Mirroring turns "everything left of \(-1\)" into
+    "everything right of \(+1\)" and does not change areas. So \(\P(Z\ge1)=\P(Z\le-1)=0.1586553\) too.</p>
+    <p>The event \(\{|Z|\ge1\}\) means "\(Z\le-1\) <i>or</i> \(Z\ge1\)". Those two pieces do not overlap, so
+    their probabilities add:</p>
+    \[ \P(|Z|\ge1)=0.1586553+0.1586553=2\,\Phi(-1)=0.3173105 . \]
+    <p><b>Check the other way round:</b> \(1-\Phi(1)=1-0.8413447=0.1586553\), so
+    \(2\bigl(1-\Phi(1)\bigr)=0.3173105\) — the same number, which is the identity
+    \(\Phi(-a)=1-\Phi(a)\) at \(a=1\). And the middle piece is the leftover:
+    \(\P(|Z|\le1)=1-0.3173105=0.6826895\), the "about 68% within one standard deviation" fact.</p>
+  </div>
+
+  <div class="widget" id="f-w-phi">
+    <h4>Widget — standardise first, then fold <span class="src extra">My addition</span></h4>
+    <p class="wsub">Left: the original \(\mathcal N(\mu,\sigma^{2})\) curve, with everything further than
+    \(a\) standard deviations from \(\mu\) shaded — the cut points are \(\mu\pm a\sigma\). Right: the same
+    event after the substitution \(z=(x-\mu)/\sigma\), where the cut points have become \(\pm a\) and the
+    curve has become the standard normal. The two shaded areas are the same number, and that number is all
+    \(\Phi\) is ever asked for. The second button switches to the <b>inside</b> event \(|Z|\le a\), which is
+    what a confidence interval needs. Move \(\mu\) and \(\sigma\) and watch the left picture slide and
+    stretch while the right picture does not move at all — that is the whole reason for standardising.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which event">
+        <button type="button" data-pe="out" aria-pressed="true">two tails · P(|Z| ≥ a)</button>
+        <button type="button" data-pe="in" aria-pressed="false">the middle · P(|Z| ≤ a)</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-ph-a">cut a</label>
+        <input type="range" id="f-ph-a" min="0" max="320" value="150" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-ph-m">mean μ</label>
+        <input type="range" id="f-ph-m" min="-40" max="40" value="20" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-ph-s">spread σ</label>
+        <input type="range" id="f-ph-s" min="4" max="30" value="15" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 248" role="img" aria-label="Two bell curves side by side: the normal with mean mu and spread sigma with its two tails shaded, and the standard normal with the tails beyond plus and minus a shaded"></svg>
+    <div class="readout"></div>
+  </div>
+
+  <div class="box ex">
     <p class="bt">Worked — the exam's own line <span class="src exam">WiSe25 · P4c</span></p>
     <p>There \(\hat\theta_{\mathrm{mle}}\) has \(\E[\hat\theta]=\theta\) and
     \(\Var[\hat\theta]=\theta^{2}/(2n)\), so its standard deviation is \(\theta/\sqrt{2n}\). The central
@@ -2348,6 +2651,58 @@ window.MathJax={
     <p><b>The one habit that prevents the standard mistake:</b> after you write the limits, check that the
     <i>outer</i> ones are numbers and that the <i>inner</i> ones mention only the outer variable. If the outer
     limits still contain a variable, you have swapped the two lines by accident.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="bt">Warm-up before D2 — one slice of the triangle, by hand <span class="src extra">My addition</span></p>
+    <p>Take the triangle \(B=\{(x,y) : 0\le x\le y\le 1\}\) — the half of the unit square above the diagonal
+    \(y=x\) — and integrate the constant \(1\) over it, which just measures its area. Choose \(x\) as the
+    <b>outer</b> variable, so the inner integral runs over \(y\).</p>
+    <p><b>One slice.</b> Fix \(x=0.3\) and ask the only question there is: <i>for this \(x\), which \(y\) are
+    in \(B\)?</i> The conditions are \(y\ge x=0.3\) and \(y\le1\), so \(y\) runs from \(0.3\) to \(1\) and
+    the slice has length \(1-0.3=0.7\). Written as an integral,
+    \(\int_{0.3}^{1}1\,\mathrm dy=1-0.3=0.7\).</p>
+    <p><b>Every slice.</b> The same two conditions at a general \(x\) give \(y\) from \(x\) to \(1\), of
+    length \(1-x\). Now integrate those lengths over all \(x\) between \(0\) and \(1\):</p>
+    \[ \int_0^1\!\!\int_x^1 1\,\mathrm dy\,\mathrm dx=\int_0^1(1-x)\,\mathrm dx
+       =\Bigl[x-\frac{x^{2}}2\Bigr]_0^1=1-\tfrac12=\tfrac12 . \]
+    <p><b>Check two ways.</b> The triangle is half of a unit square, so its area is \(\tfrac12\) ✓. And in
+    the other order, with \(y\) outside: for a fixed \(y\), \(x\) runs from \(0\) to \(y\), length \(y\), and
+    \(\int_0^1 y\,\mathrm dy=\tfrac12\) ✓ — the same answer, which is Rule 2. Notice the one thing that
+    changed between the two orders: the <b>inner</b> limits, \(x\) to \(1\) in one, \(0\) to \(y\) in the
+    other. Everything in D2 to D5 below is this slice question asked about a different region.</p>
+  </div>
+
+  <div class="widget" id="f-w-region">
+    <h4>Widget — the slice, and the inner limits it gives you <span class="src extra">My addition</span></h4>
+    <p class="wsub">Left: the region in the plane. The moving line is the <b>slice</b> at the current value
+    of the outer variable, and its thick part is the piece that lies inside the region — exactly what the
+    inner integral runs over. Switching the outer variable from \(x\) to \(y\) turns the slice from vertical
+    to horizontal, and the inner limits change with it. Right: the <b>length</b> of that slice plotted
+    against the outer variable, with the current slice marked; the area under this second curve is the area
+    of the region, which is what "integrate the slice, then integrate the result" means. The readout prints
+    the inner limits the current slice produces and the full iterated integral in both orders, with both
+    numbers, so you can see Rule 2 hold.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which region">
+        <button type="button" data-rg="rect" aria-pressed="true">rectangle</button>
+        <button type="button" data-rg="tri" aria-pressed="false">triangle 0 ≤ x ≤ y ≤ 1</button>
+        <button type="button" data-rg="half" aria-pressed="false">half-plane x + y ≤ z</button>
+        <button type="button" data-rg="disc" aria-pressed="false">disc x² + y² ≤ r²</button>
+      </div>
+      <div class="seg" role="group" aria-label="Outer variable">
+        <button type="button" data-ro="x" aria-pressed="true">outer x, inner y</button>
+        <button type="button" data-ro="y" aria-pressed="false">outer y, inner x</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-rg-t">slice position</label>
+        <input type="range" id="f-rg-t" min="0" max="100" value="35" step="1"><span class="val"></span></div>
+      <div class="ctl" id="f-rg-pc"><label for="f-rg-p">parameter</label>
+        <input type="range" id="f-rg-p" min="0" max="100" value="60" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 272" role="img" aria-label="Left: a region of the plane with a movable slice line whose part inside the region is drawn thick. Right: the length of that slice plotted against the outer variable, with the area under it shaded"></svg>
+    <div class="readout"></div>
   </div>
 
   <div class="box ex">
@@ -2563,6 +2918,25 @@ window.MathJax={
   </div>
 
   <div class="box ex">
+    <p class="bt">Warm-up before Jensen — \(x^{2}\) at two points <span class="src extra">My addition</span></p>
+    <p>Take \(g(x)=x^{2}\) and the two points \(x_1=1\) and \(x_2=3\) on its graph, at heights
+    \(g(1)=1\) and \(g(3)=9\). The <b>chord</b> is the straight segment joining \((1,1)\) to \((3,9)\).</p>
+    <p><b>Compare the two at the midpoint.</b> The midpoint of \(1\) and \(3\) is
+    \(\tfrac{1+3}{2}=2\). On the <i>curve</i> the height there is \(g(2)=4\). On the <i>chord</i> the height
+    there is the midpoint of the two end heights, \(\tfrac{1+9}{2}=5\) — a straight line's value halfway
+    along is the average of its two end values. And \(4\le5\): the chord is above the curve. That one
+    inequality, for every pair of points and every point in between, is the definition of <b>convex</b>.</p>
+    <p><b>Now read it as probability.</b> Let \(X\) be the random variable that takes the value \(1\) with
+    probability \(\tfrac12\) and \(3\) with probability \(\tfrac12\). Then \(\E[X]=\tfrac12\cdot1+\tfrac12\cdot3=2\)
+    and \(\E[g(X)]=\tfrac12\cdot1+\tfrac12\cdot9=5\), so</p>
+    \[ g\bigl(\E[X]\bigr)=4\;\le\;5=\E\bigl[g(X)\bigr] , \]
+    <p>which is Jensen's inequality for this \(X\). The gap \(5-4=1\) is exactly \(\Var[X]\), because
+    \(\E[X^{2}]-\E[X]^{2}\) <i>is</i> the variance, and \(\Var[X]=1\) for a variable sitting at \(1\) and
+    \(3\) with equal weight ✓. <b>Second-derivative check:</b> \(g'(x)=2x\), \(g''(x)=2\), positive
+    everywhere, so \(x^{2}\) is convex on all of \(\R\) — matching what the picture showed.</p>
+  </div>
+
+  <div class="box ex">
     <p class="bt">The list to memorise — six functions, with their second derivatives <span class="src extra">My addition</span></p>
     <div class="scrollx">
     <table class="t">
@@ -2614,6 +2988,38 @@ window.MathJax={
     \(g(\E[X])=9.000000\) and \(\E[g(X)]=\tfrac{1+4+36}{3}=13.666667\), and \(9\le13.67\) ✓ — the gap
     \(13.666667-9=4.666667\) is precisely \(\Var[X]\). With the concave \(g=\ln\):
     \(\E[\ln X]=0.828302\le\ln\E[X]=1.098612\) ✓.</p>
+  </div>
+
+  <div class="widget" id="f-w-convex">
+    <h4>Widget — the chord above the curve, and Jensen as a picture <span class="src extra">My addition</span></h4>
+    <p class="wsub">The two sliders \(x_1\) and \(x_2\) move the ends of the chord along the curve. For a
+    <b>convex</b> \(g\) the chord never dips below the curve, however you place the two points; for a
+    <b>concave</b> one it never rises above it. The third slider is the weight \(\alpha\) of a two-point
+    random variable \(X\) — it takes the value \(x_1\) with probability \(\alpha\) and \(x_2\) with
+    probability \(1-\alpha\) — so that \(\E[X]=\alpha x_1+(1-\alpha)x_2\) slides along the horizontal axis
+    between the two points. At that place, \(g(\E[X])\) is the height of the <b>curve</b> and
+    \(\E[g(X)]=\alpha g(x_1)+(1-\alpha)g(x_2)\) is the height of the <b>chord</b>; the vertical segment
+    between them is the Jensen gap. The readout gives \(g''\) at \(\E[X]\) with its sign, which is the line
+    the exam wants written.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Which function">
+        <button type="button" data-cx="sq" aria-pressed="true">x² · convex</button>
+        <button type="button" data-cx="exp" aria-pressed="false">exp(x) · convex</button>
+        <button type="button" data-cx="nlog" aria-pressed="false">−ln x · convex</button>
+        <button type="button" data-cx="log" aria-pressed="false">ln x · concave</button>
+        <button type="button" data-cx="sqrt" aria-pressed="false">√x · concave</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><label for="f-cx-1">left point x₁</label>
+        <input type="range" id="f-cx-1" min="0" max="100" value="12" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-cx-2">right point x₂</label>
+        <input type="range" id="f-cx-2" min="0" max="100" value="88" step="1"><span class="val"></span></div>
+      <div class="ctl"><label for="f-cx-a">weight α on x₁</label>
+        <input type="range" id="f-cx-a" min="0" max="100" value="50" step="1"><span class="val"></span></div>
+    </div>
+    <svg viewBox="0 0 620 246" role="img" aria-label="A curve with a chord joining two movable points, the mean of a two-point distribution marked on the horizontal axis, and the vertical gap between the curve and the chord above it"></svg>
+    <div class="readout"></div>
   </div>
 
   <p class="mine"><b>Fuller treatment:</b>
@@ -28016,6 +28422,1164 @@ G.inits["ana-fast"] = function(sec){
   function rng(seed){ var a = seed >>> 0; return function(){ a = (a + 0x6D2B79F5) >>> 0; var t = a;
     t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
   function pick(r, arr){ return arr[Math.floor(r() * arr.length) % arr.length]; }
+
+  /* ---- shared drawing helpers (same shape as ch33.js / ch13.js) ---- */
+  function txt(x, y, s, o){ o = o || {};
+    return '<text x="'+(+x).toFixed(1)+'" y="'+(+y).toFixed(1)+'" font-size="'+(o.fs||10)+'" fill="'+(o.fill||G.css("--muted"))+'"'+
+      (o.anchor ? ' text-anchor="'+o.anchor+'"' : '')+(o.mono ? ' font-family="monospace"' : '')+(o.weight ? ' font-weight="'+o.weight+'"' : '')+'>'+s+'</text>'; }
+  function segWire(w, attr, cb){
+    var bs = w.querySelectorAll('.seg button['+attr+']');
+    bs.forEach(function(b){ b.addEventListener("click", function(){
+      bs.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); cb(b.getAttribute(attr)); }); });
+  }
+  /* erfc with relative error below 1.2e-7 (Numerical Recipes erfcc), and the standard normal cdf */
+  function erfc(x){ var z = Math.abs(x), t = 1/(1+0.5*z);
+    var r = t*Math.exp(-z*z-1.26551223+t*(1.00002368+t*(0.37409196+t*(0.09678418+t*(-0.18628806+t*(0.27886807+t*(-1.13520398+t*(1.48851587+t*(-0.82215223+t*0.17087277)))))))));
+    return x >= 0 ? r : 2-r; }
+  function Phi(z){ return 0.5*erfc(-z/Math.SQRT2); }
+  function npdf(z){ return Math.exp(-z*z/2)/Math.sqrt(2*Math.PI); }
+  /* composite Simpson on [a,b] with m panels (m even) — used only for the numeric cross-checks */
+  function simp(f, a, b, m){ if(!(b > a)) return 0; m = m || 400;
+    var h = (b-a)/m, s = f(a)+f(b);
+    for(var i=1;i<m;i++) s += (i%2 ? 4 : 2)*f(a+i*h);
+    return s*h/3; }
+  /* a tidy "1.23·10⁻⁵" for very small residuals */
+  var SUPCH = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻","+":"⁺"};
+  function supn(s){ return String(s).split("").map(function(c){ return SUPCH[c] || c; }).join(""); }
+  function tiny(x){ var a = Math.abs(x);
+    if(a < 1e-14) return "0";
+    if(a < 1e-3){ var e = a.toExponential(1).split("e"); return e[0]+"·10"+supn(e[1]); }
+    return G.fmt(a, 7); }
+
+  /* ============ widget: (1 + x/n)^n climbing to e^x ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-limit"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sn = w.querySelector("#f-lim-n"), sx = w.querySelector("#f-lim-x"), sl = w.querySelector("#f-lim-l");
+    var xc = w.querySelector("#f-lim-xc"), lc = w.querySelector("#f-lim-lc");
+    var mode = "e";
+    var TICKS = [1,2,3,5,10,20,30,50,100,200,300,500];
+
+    function draw(){
+      var n = +sn.value, x = (+sx.value)/10, lam = (+sl.value)/10;
+      var a = (mode === "e") ? x : -lam;              /* the term is (1 + a/m)^m */
+      sn.parentNode.querySelector(".val").textContent = n;
+      sx.parentNode.querySelector(".val").textContent = G.fmt(x,1);
+      sl.parentNode.querySelector(".val").textContent = G.fmt(lam,1);
+      xc.style.display = (mode === "e") ? "" : "none";
+      lc.style.display = (mode === "e") ? "none" : "";
+
+      function term(m){ return Math.pow(1 + a/m, m); }
+      var L = Math.exp(a), lg = Math.log(Math.max(n, 2));
+
+      /* sampled indices, log-spaced, 1 and n always included */
+      var idx = [], K = Math.min(n, 70), den = (K > 1) ? (K-1) : 1;
+      for(var i=0;i<K;i++){
+        var m = Math.round(Math.exp(lg*i/den));
+        if(m < 1) m = 1; if(m > n) m = n;
+        if(idx.length === 0 || idx[idx.length-1] !== m) idx.push(m);
+      }
+      if(idx[idx.length-1] !== n) idx.push(n);
+
+      var vals = idx.map(term);
+      var ylo = Math.min(L, Math.min.apply(null, vals)), yhi = Math.max(L, Math.max.apply(null, vals));
+      if(yhi - ylo < 1e-9){ ylo -= 0.5; yhi += 0.5; }
+      var pad = 0.08*(yhi - ylo); ylo -= pad; yhi += pad;
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"), line = G.css("--line");
+      var X0 = 46, X1 = 598, Y0 = 36, Y1 = 188;
+      var px = function(m){ return X0 + (Math.log(m)/lg)*(X1-X0); };
+      var py = function(v){ return Y1 - (v-ylo)/(yhi-ylo)*(Y1-Y0); };
+
+      var h = '';
+      h += '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      /* zero line, when 0 is inside the view */
+      if(ylo < 0 && yhi > 0) h += '<line x1="'+X0+'" y1="'+py(0).toFixed(1)+'" x2="'+X1+'" y2="'+py(0).toFixed(1)+'" stroke="'+line+'"/>';
+      /* the limit */
+      var yL = py(L);
+      h += '<line x1="'+X0+'" y1="'+yL.toFixed(1)+'" x2="'+X1+'" y2="'+yL.toFixed(1)+'" stroke="'+ex+'" stroke-width="1.6" stroke-dasharray="5 4"/>';
+      /* dots */
+      for(var j=0;j<idx.length;j++){
+        var cx = px(idx[j]), cy = py(vals[j]), last = (idx[j] === n);
+        h += '<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+(last ? 5 : 2.6)+'" fill="'+(last ? acc : mut)+'"'+
+             (last ? ' stroke="'+G.css("--surface")+'" stroke-width="1.2"' : '')+'/>';
+      }
+      /* index ticks, kept at least 30px apart so the numbers never touch */
+      var lastpx = -99;
+      for(var t=0;t<TICKS.length;t++){
+        var v = TICKS[t]; if(v > n) continue;
+        var pxv = px(v); if(pxv - lastpx < 30) continue;
+        lastpx = pxv;
+        h += '<line x1="'+pxv.toFixed(1)+'" y1="'+Y1+'" x2="'+pxv.toFixed(1)+'" y2="'+(Y1+4)+'" stroke="'+mut+'"/>';
+        h += txt(pxv, Y1+16, v, {anchor:"middle", fs:9, mono:1});
+      }
+      /* fixed-position captions only, so nothing can overlap at any slider position */
+      var lab = (mode === "e") ? "(1 + x/m)ᵐ" : "(1 − λ/m)ᵐ";
+      h += txt(X0, 16, "height of a dot = "+lab, {fs:10, fill:ink});
+      h += txt(X1, 16, "dashed line = the limit "+(mode === "e" ? "exp(x) = " : "exp(−λ) = ")+G.fmt(L,5),
+               {anchor:"end", fs:10, fill:ex});
+      h += txt(X1, Y1+32, "index m, logarithmic", {anchor:"end", fs:9});
+      h += txt(X0, Y1+32, "filled dot = the term at m = n = "+n, {fs:9, fill:acc});
+      svg.innerHTML = h;
+
+      var vn = term(n), gap = L - vn, g2 = L - term(2*n);
+      var halves = (Math.abs(gap) > 1e-12) && (n >= 20) && (Math.abs(g2/gap - 0.5) < 0.12);
+      var second;
+      if(Math.abs(gap) < 1e-12 && Math.abs(a) < 1e-12)
+        second = "with x = 0 every term is 1 already, so there is nothing left to converge to — move x off 0.";
+      else
+        second = "at twice as many steps (n = "+(2*n)+") the gap is "+G.fmt(g2,7)+
+          (halves ? " — close to half of "+G.fmt(gap,7)+", which is what \"the gap shrinks like 1/n\" means"
+                  : " · the clean halving only sets in once n is comfortably larger than "+(mode === "e" ? "|x|" : "λ")+", so push n to the right");
+      out.innerHTML =
+        (mode === "e" ? "x = "+G.fmt(x,1) : "λ = "+G.fmt(lam,1))+" · n = "+n+
+        " → term = <b>"+G.fmt(vn,7)+"</b> · limit "+(mode === "e" ? "exp(x)" : "exp(−λ)")+" = <b>"+G.fmt(L,7)+"</b>"+
+        " · gap = <b>"+G.fmt(gap,7)+"</b><br>"+second+
+        (mode === "poi" ? "<br>Thm 1.42 needs the moving version (1 − pₙ)ⁿ with n·pₙ → λ; this picture is its special case pₙ = λ/n." : "");
+    }
+    segWire(w, "data-lm", function(m){ mode = m; draw(); });
+    [sn, sx, sl].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-lim"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: partial sums of the three series ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-series"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sN = w.querySelector("#f-ser-n"), sq = w.querySelector("#f-ser-q"), sl = w.querySelector("#f-ser-l");
+    var qc = w.querySelector("#f-ser-qc"), lc = w.querySelector("#f-ser-lc");
+    var mode = "geo";
+    var FACT = [1]; for(var i=1;i<=45;i++) FACT[i] = FACT[i-1]*i;
+
+    function draw(){
+      var N = +sN.value, q = (+sq.value)/100, lam = (+sl.value)/10;
+      sN.parentNode.querySelector(".val").textContent = N;
+      sq.parentNode.querySelector(".val").textContent = G.fmt(q,2);
+      sl.parentNode.querySelector(".val").textContent = G.fmt(lam,1);
+      qc.style.display = (mode === "exp") ? "none" : "";
+      lc.style.display = (mode === "exp") ? "" : "none";
+
+      /* term number k = 1,2,3,…  (the first term of each series) */
+      function term(k){
+        if(mode === "geo")  return Math.pow(q, k-1);              /* Σ_{j≥0} qʲ */
+        if(mode === "dgeo") return k*Math.pow(q, k-1);            /* Σ_{k≥1} k q^{k−1} */
+        return Math.pow(lam, k-1)/FACT[k-1];                      /* Σ_{k≥0} λᵏ/k! */
+      }
+      var L = (mode === "geo") ? 1/(1-q) : (mode === "dgeo") ? 1/((1-q)*(1-q)) : Math.exp(lam);
+      var s = [], run = 0;
+      for(var k=1;k<=N;k++){ run += term(k); s.push(run); }
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"), soft = G.css("--accent-soft");
+      var X0 = 46, X1 = 598, Y0 = 40, Y1 = 186;
+      var bw = (X1-X0)/N, gapw = Math.min(2, bw*0.18);
+      var py = function(v){ return Y1 - Math.max(0, Math.min(1, v/L))*(Y1-Y0); };
+
+      var h = '';
+      h += '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X1+'" y2="'+Y0+'" stroke="'+ex+'" stroke-width="1.6" stroke-dasharray="5 4"/>';
+      /* half-way guide */
+      h += '<line x1="'+X0+'" y1="'+py(L/2).toFixed(1)+'" x2="'+X1+'" y2="'+py(L/2).toFixed(1)+'" stroke="'+G.css("--line")+'"/>';
+      for(var j=0;j<N;j++){
+        var x0 = X0 + j*bw + gapw/2, wdt = Math.max(1, bw - gapw), yt = py(s[j]);
+        h += '<rect x="'+x0.toFixed(1)+'" y="'+yt.toFixed(1)+'" width="'+wdt.toFixed(1)+'" height="'+Math.max(0.6, Y1-yt).toFixed(1)+
+             '" fill="'+(j === N-1 ? acc : soft)+'" stroke="'+acc+'" stroke-width="0.7"/>';
+      }
+      /* index labels at a stride that keeps them at least 34px apart */
+      var stride = Math.max(1, Math.ceil(34/bw));
+      for(var t=1;t<=N;t+=stride){
+        h += txt(X0 + (t-0.5)*bw, Y1+15, t, {anchor:"middle", fs:9, mono:1});
+      }
+      h += txt(X0, 16, "bar height = partial sum s_N, as a fraction of the limit", {fs:10, fill:ink});
+      h += txt(X1, 16, "dashed line = the limit "+G.fmt(L,5), {anchor:"end", fs:10, fill:ex});
+      h += txt(X0, Y0-6, "limit", {fs:9, fill:ex});
+      h += txt(X0-4, py(L/2)+3, "½", {anchor:"end", fs:9, mono:1});
+      h += txt(X1, Y1+30, "number of terms N", {anchor:"end", fs:9});
+      svg.innerHTML = h;
+
+      var sN_ = s[N-1], form, lf;
+      if(mode === "geo"){
+        form = "Σ<sub>j=0</sub><sup>N−1</sup> q<sup>j</sup>"; lf = "1/(1 − q) = 1/"+G.fmt(1-q,2); }
+      else if(mode === "dgeo"){
+        form = "Σ<sub>k=1</sub><sup>N</sup> k·q<sup>k−1</sup>"; lf = "1/(1 − q)² = 1/"+G.fmt((1-q)*(1-q),4); }
+      else {
+        form = "Σ<sub>k=0</sub><sup>N−1</sup> λ<sup>k</sup>/k!"; lf = "e<sup>λ</sup>"; }
+      out.innerHTML =
+        form+" with "+(mode === "exp" ? "λ = "+G.fmt(lam,1) : "q = "+G.fmt(q,2))+
+        ", N = "+N+"<br>partial sum s<sub>N</sub> = <b>"+G.fmt(sN_,7)+"</b> · limit "+lf+" = <b>"+G.fmt(L,7)+"</b>"+
+        " · remaining gap = <b>"+G.fmt(L-sN_,7)+"</b> ("+G.fmt(100*(L-sN_)/L,2)+" % of the limit still missing)";
+    }
+    segWire(w, "data-sr", function(m){ mode = m; draw(); });
+    [sN, sq, sl].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-ser"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: the integral as an area, and the normalising constant ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-area"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sc = w.querySelector("#f-ar-c"), sp = w.querySelector("#f-ar-p"),
+        sa = w.querySelector("#f-ar-a"), sb = w.querySelector("#f-ar-b");
+    var pc = w.querySelector("#f-ar-pc"), ac = w.querySelector("#f-ar-ac"), bc = w.querySelector("#f-ar-bc");
+    var shape = "lin", amode = "iv";
+
+    /* every shape: base integrand p, its exact antiderivative F measured from the left end of the
+       support, the support, the display window, the total ∫_support p, and the exact c = 1/total     */
+    var SH = {
+      lin: { plabel:"(no parameter)", par:function(){ return 2; },
+        p:function(x){ return (x >= 0 && x <= 2) ? x : 0; },
+        F:function(x){ var t = Math.max(0, Math.min(x, 2)); return t*t/2; },
+        slo:0, shi:2, dlo:-0.25, dhi:2.3, tot:function(){ return 2; },
+        totS:function(){ return "∫₀² x dx = [x²/2]₀² = 2"; },
+        ivS:function(a,b){ return "c·(b² − a²)/2"; },
+        cS:function(){ return "c = 1/2 = 0.5"; },
+        name:function(){ return "c·x on [0,2]"; } },
+      exp: { plabel:"rate λ", par:function(v){ return 0.3 + v/100*2.7; },
+        p:function(x,L){ return x >= 0 ? Math.exp(-L*x) : 0; },
+        F:function(x,L){ var t = Math.max(0, x); return (1 - Math.exp(-L*t))/L; },
+        slo:0, shi:Infinity, dlo:function(L){ return -0.2/L; }, dhi:function(L){ return 6/L; },
+        tot:function(L){ return 1/L; },
+        totS:function(L){ return "∫₀^∞ e^(−λx) dx = 1/λ = "+G.fmt(1/L,5); },
+        ivS:function(){ return "(c/λ)·(e^(−λa) − e^(−λb))"; },
+        cS:function(L){ return "c = λ = "+G.fmt(L,3); },
+        name:function(L){ return "c·exp(−λx) on [0,∞), λ = "+G.fmt(L,2); } },
+      norm:{ plabel:"spread σ", par:function(v){ return 0.4 + v/100*2.1; },
+        p:function(x,S){ return Math.exp(-x*x/(2*S*S)); },
+        F:function(x,S){ return S*Math.sqrt(2*Math.PI)*Phi(x/S); },
+        slo:-Infinity, shi:Infinity, dlo:function(S){ return -4*S; }, dhi:function(S){ return 4*S; },
+        tot:function(S){ return S*Math.sqrt(2*Math.PI); },
+        totS:function(S){ return "∫_ℝ e^(−x²/2σ²) dx = σ√(2π) = "+G.fmt(S*Math.sqrt(2*Math.PI),5); },
+        ivS:function(){ return "c·σ√(2π)·(Φ(b/σ) − Φ(a/σ))"; },
+        cS:function(S){ return "c = 1/(σ√(2π)) = "+G.fmt(1/(S*Math.sqrt(2*Math.PI)),5); },
+        name:function(S){ return "c·exp(−x²/2σ²), σ = "+G.fmt(S,2); } },
+      tri: { plabel:"width w", par:function(v){ return 1 + v/100*3; },
+        p:function(x,W){ return (x >= 0 && x <= W) ? Math.min(x, W-x) : 0; },
+        F:function(x,W){ var t = Math.max(0, Math.min(x, W));
+          return (t <= W/2) ? t*t/2 : W*W/4 - (W-t)*(W-t)/2; },
+        slo:0, shi:function(W){ return W; }, dlo:function(W){ return -0.1*W; }, dhi:function(W){ return 1.1*W; },
+        tot:function(W){ return W*W/4; },
+        totS:function(W){ return "∫₀^w min(x, w−x) dx = w²/4 = "+G.fmt(W*W/4,5); },
+        ivS:function(){ return "c·(F(b) − F(a)), F(x) = x²/2 up to w/2, then w²/4 − (w−x)²/2"; },
+        cS:function(W){ return "c = 4/w² = "+G.fmt(4/(W*W),5); },
+        name:function(W){ return "c·min(x, w−x) on [0,w], w = "+G.fmt(W,2); } },
+      pow: { plabel:"exponent p", par:function(v){ return 1.2 + v/100*2.8; },
+        p:function(x,P){ return x >= 1 ? Math.pow(x, -P) : 0; },
+        F:function(x,P){ var t = Math.max(1, x); return (Math.pow(t, 1-P) - 1)/(1-P); },
+        slo:1, shi:Infinity, dlo:function(){ return 0.6; }, dhi:function(){ return 8; },
+        tot:function(P){ return 1/(P-1); },
+        totS:function(P){ return "∫₁^∞ x^(−p) dx = 1/(p − 1) = "+G.fmt(1/(P-1),5); },
+        ivS:function(){ return "c·(b^(1−p) − a^(1−p))/(1 − p)"; },
+        cS:function(P){ return "c = p − 1 = "+G.fmt(P-1,5); },
+        name:function(P){ return "c·x^(−p) on [1,∞), p = "+G.fmt(P,2); } }
+    };
+    function val(f, P){ return (typeof f === "function") ? f(P) : f; }
+
+    function draw(){
+      var S = SH[shape], P = S.par((+sp.value));
+      var c = (+sc.value)/100;
+      var dlo = val(S.dlo, P), dhi = val(S.dhi, P), slo = val(S.slo, P), shi = val(S.shi, P);
+      sc.parentNode.querySelector(".val").textContent = G.fmt(c,2);
+      sp.parentNode.querySelector(".val").textContent = (shape === "lin") ? "—" : G.fmt(P,2);
+      pc.querySelector("label").textContent = S.plabel;
+      pc.style.display = (shape === "lin") ? "none" : "";
+      ac.style.display = bc.style.display = (amode === "nm") ? "none" : "";
+
+      /* the shaded region */
+      var lo, hi;
+      if(amode === "nm"){ lo = Math.max(slo, -1e9); hi = Math.min(shi, 1e9); }
+      else {
+        var fa = (+sa.value)/100, fb = (+sb.value)/100;
+        var ra = dlo + Math.min(fa,fb)*(dhi-dlo), rb = dlo + Math.max(fa,fb)*(dhi-dlo);
+        lo = Math.max(ra, slo); hi = Math.max(lo, Math.min(rb, shi));
+      }
+      var total = c*S.tot(P);
+      var area = (amode === "nm") ? total : c*(S.F(hi, P) - S.F(lo, P));
+      sa.parentNode.querySelector(".val").textContent = (amode === "nm") ? "support" : G.fmt(lo,3);
+      sb.parentNode.querySelector(".val").textContent = (amode === "nm") ? "support" : G.fmt(hi,3);
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          soft = G.css("--accent-soft"), line = G.css("--line");
+      var X0 = 46, X1 = 598, Y0 = 36, Y1 = 170;
+      var pmax = 0; for(var i=0;i<=400;i++) pmax = Math.max(pmax, c*S.p(dlo + i*(dhi-dlo)/400, P));
+      if(!(pmax > 0)) pmax = 1;
+      var px = function(x){ return X0 + (x-dlo)/(dhi-dlo)*(X1-X0); };
+      var py = function(v){ return Y1 - Math.min(v, pmax*1.12)/(pmax*1.12)*(Y1-Y0); };
+
+      var h = '', d = '', j, x;
+      /* shaded region, clipped to the drawing window */
+      var vlo = Math.max(lo, dlo), vhi = Math.min(hi, dhi);
+      if(vhi > vlo){
+        d = 'M'+px(vlo).toFixed(1)+' '+Y1;
+        for(j=0;j<=200;j++){ x = vlo + j*(vhi-vlo)/200; d += 'L'+px(x).toFixed(1)+' '+py(c*S.p(x,P)).toFixed(1); }
+        d += 'L'+px(vhi).toFixed(1)+' '+Y1+'Z';
+        h += '<path d="'+d+'" fill="'+soft+'" stroke="none"/>';
+      }
+      /* the curve */
+      var cu = '';
+      for(j=0;j<=400;j++){ x = dlo + j*(dhi-dlo)/400; cu += (j?'L':'M')+px(x).toFixed(1)+' '+py(c*S.p(x,P)).toFixed(1); }
+      h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      [vlo, vhi].forEach(function(v){ if(v > dlo && v < dhi)
+        h += '<line x1="'+px(v).toFixed(1)+'" y1="'+Y0+'" x2="'+px(v).toFixed(1)+'" y2="'+Y1+'" stroke="'+ink+'" stroke-dasharray="4 3"/>'; });
+      /* x-axis ticks at five fixed fractions of the window */
+      for(var t=0;t<=4;t++){ var xv = dlo + t*(dhi-dlo)/4;
+        h += txt(px(xv), Y1+15, G.fmt(xv,2), {anchor:"middle", fs:9, mono:1}); }
+
+      /* the "area versus 1" bar */
+      var BX0 = 46, BX1 = 450, BY = Y1+42, trackMax = 1.6;
+      h += '<rect x="'+BX0+'" y="'+BY+'" width="'+(BX1-BX0)+'" height="10" fill="'+line+'"/>';
+      var fw = Math.max(0, Math.min(area/trackMax, 1))*(BX1-BX0);
+      h += '<rect x="'+BX0+'" y="'+BY+'" width="'+fw.toFixed(1)+'" height="10" fill="'+((Math.abs(area-1) < 0.02) ? G.css("--ok") : acc)+'"/>';
+      var onex = BX0 + (1/trackMax)*(BX1-BX0);
+      h += '<line x1="'+onex.toFixed(1)+'" y1="'+(BY-4)+'" x2="'+onex.toFixed(1)+'" y2="'+(BY+14)+'" stroke="'+ex+'" stroke-width="2"/>';
+      h += txt(onex, BY-8, "target 1", {anchor:"middle", fs:9, fill:ex});
+      h += txt(BX1+10, BY+9, "shaded area = "+G.fmt(area,5), {fs:10, fill:ink});
+
+      h += txt(X0, 16, S.name(P), {fs:10, fill:ink});
+      h += txt(X1, 16, (amode === "nm") ? "region = the whole support" : "region = [a, b]", {anchor:"end", fs:10, fill:acc});
+      h += txt(X1, Y1+31, "x-axis", {anchor:"end", fs:9});
+      svg.innerHTML = h;
+
+      var ok = Math.abs(total - 1) < 5e-3;
+      if(amode === "nm"){
+        out.innerHTML =
+          "total area = c · "+S.totS(P)+" → <b>"+G.fmt(total,5)+"</b> against the target <b>1</b>"+
+          "<br>exact solution: "+S.cS(P)+" &nbsp;(you have c = "+G.fmt(c,2)+", off by "+G.fmt(total-1,5)+")"+
+          (ok ? " &nbsp;✓ this is a density" : "");
+      } else {
+        out.innerHTML =
+          "∫<sub>a</sub><sup>b</sup> c·p(x) dx = "+S.ivS(lo,hi)+" = <b>"+G.fmt(area,7)+"</b> &nbsp;(a = "+G.fmt(lo,4)+", b = "+G.fmt(hi,4)+", c = "+G.fmt(c,2)+")"+
+          "<br>total over the support = c · "+S.totS(P)+" → <b>"+G.fmt(total,5)+"</b>"+
+          (ok ? " ✓ so the shaded area is the probability P(a ≤ X ≤ b)"
+              : " ✗ not 1, so the shaded area is not yet a probability — switch to <i>normalise</i>, where the exact answer is "+S.cS(P));
+      }
+    }
+    segWire(w, "data-sh", function(s){ shape = s; draw(); });
+    segWire(w, "data-am", function(m){ amode = m; draw(); });
+    [sc, sp, sa, sb].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-area"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: what a substitution does ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-sub"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sa = w.querySelector("#f-sub-a"), sb = w.querySelector("#f-sub-b"), sp = w.querySelector("#f-sub-p");
+    var pcl = w.querySelector("#f-sub-pc");
+    var mode = "lam", MU = 1;
+
+    var SB = {
+      lam: { plabel:"rate λ", par:function(v){ return 0.5 + v/100*2.5; },
+        xlo:function(){ return 0; }, xhi:function(L){ return 5/L; },
+        fx:function(x,L){ return L*Math.exp(-L*x); },
+        g:function(x,L){ return L*x; },
+        fu:function(u){ return Math.exp(-u); },
+        ulo:function(){ return 0; }, uhi:function(){ return 5; },
+        exact:function(a,b,L){ return Math.exp(-L*a) - Math.exp(-L*b); },
+        lx:"λ·exp(−λx)", lu:"exp(−u)", sub:"u = λx,  du = λ dx",
+        xv:"x", uv:"u", exS:"exp(−λa) − exp(−λb)" },
+      std: { plabel:"spread σ", par:function(v){ return 0.5 + v/100*2.0; },
+        xlo:function(S){ return MU - 4*S; }, xhi:function(S){ return MU + 4*S; },
+        fx:function(x,S){ return npdf((x-MU)/S)/S; },
+        g:function(x,S){ return (x-MU)/S; },
+        fu:function(z){ return npdf(z); },
+        ulo:function(){ return -4; }, uhi:function(){ return 4; },
+        exact:function(a,b,S){ return Phi((b-MU)/S) - Phi((a-MU)/S); },
+        lx:"the N(μ,σ²) density", lu:"the standard normal φ(z)", sub:"z = (x − μ)/σ,  dz = dx/σ",
+        xv:"x", uv:"z", exS:"Φ((b−μ)/σ) − Φ((a−μ)/σ)" },
+      sq:  { plabel:"(no parameter)", par:function(){ return 0; },
+        xlo:function(){ return 0; }, xhi:function(){ return 3; },
+        fx:function(x){ return x*Math.exp(-x*x/2); },
+        g:function(x){ return x*x/2; },
+        fu:function(u){ return Math.exp(-u); },
+        ulo:function(){ return 0; }, uhi:function(){ return 4.5; },
+        exact:function(a,b){ return Math.exp(-a*a/2) - Math.exp(-b*b/2); },
+        lx:"x·exp(−x²/2)", lu:"exp(−u)", sub:"u = x²/2,  du = x dx",
+        xv:"x", uv:"u", exS:"exp(−a²/2) − exp(−b²/2)" }
+    };
+
+    function draw(){
+      var S = SB[mode], P = S.par(+sp.value);
+      var xlo = S.xlo(P), xhi = S.xhi(P), ulo = S.ulo(P), uhi = S.uhi(P);
+      var fa = (+sa.value)/100, fb = (+sb.value)/100;
+      var a = xlo + Math.min(fa,fb)*(xhi-xlo), b = xlo + Math.max(fa,fb)*(xhi-xlo);
+      var ga = S.g(a,P), gb = S.g(b,P);
+      sa.parentNode.querySelector(".val").textContent = G.fmt(a,3);
+      sb.parentNode.querySelector(".val").textContent = G.fmt(b,3);
+      sp.parentNode.querySelector(".val").textContent = (mode === "sq") ? "—" : G.fmt(P,2);
+      pcl.querySelector("label").textContent = S.plabel;
+      pcl.style.display = (mode === "sq") ? "none" : "";
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          soft = G.css("--accent-soft");
+      var Y0 = 54, Y1 = 186;
+      var PAN = [
+        { x0:40, x1:290, lo:xlo, hi:xhi, f:function(t){ return S.fx(t,P); }, sa:a, sb:b, lab:S.lx, ax:S.xv },
+        { x0:350, x1:600, lo:ulo, hi:uhi, f:function(t){ return S.fu(t,P); }, sa:ga, sb:gb, lab:S.lu, ax:S.uv }
+      ];
+      var h = '';
+      PAN.forEach(function(p){
+        var pmax = 0, i, t;
+        for(i=0;i<=300;i++) pmax = Math.max(pmax, p.f(p.lo + i*(p.hi-p.lo)/300));
+        if(!(pmax > 0)) pmax = 1;
+        var sx = function(v){ return p.x0 + (v-p.lo)/(p.hi-p.lo)*(p.x1-p.x0); };
+        var sy = function(v){ return Y1 - Math.min(v, pmax*1.15)/(pmax*1.15)*(Y1-Y0); };
+        var vlo = Math.max(p.sa, p.lo), vhi = Math.min(p.sb, p.hi);
+        if(vhi > vlo){
+          var d = 'M'+sx(vlo).toFixed(1)+' '+Y1;
+          for(i=0;i<=160;i++){ t = vlo + i*(vhi-vlo)/160; d += 'L'+sx(t).toFixed(1)+' '+sy(p.f(t)).toFixed(1); }
+          h += '<path d="'+d+'L'+sx(vhi).toFixed(1)+' '+Y1+'Z" fill="'+soft+'" stroke="none"/>';
+        }
+        var cu = '';
+        for(i=0;i<=300;i++){ t = p.lo + i*(p.hi-p.lo)/300; cu += (i?'L':'M')+sx(t).toFixed(1)+' '+sy(p.f(t)).toFixed(1); }
+        h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+        h += '<line x1="'+p.x0+'" y1="'+Y1+'" x2="'+p.x1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+        h += '<line x1="'+p.x0+'" y1="'+Y0+'" x2="'+p.x0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+        [vlo, vhi].forEach(function(v){
+          h += '<line x1="'+sx(v).toFixed(1)+'" y1="'+Y0+'" x2="'+sx(v).toFixed(1)+'" y2="'+Y1+'" stroke="'+ink+'" stroke-dasharray="4 3"/>'; });
+        h += txt(p.x0, Y0-10, p.lab, {fs:10, fill:ink});
+        h += txt(p.x0, Y1+15, G.fmt(p.lo,2), {fs:9, mono:1});
+        h += txt(p.x1, Y1+15, G.fmt(p.hi,2), {anchor:"end", fs:9, mono:1});
+        h += txt(p.x1, Y1+31, p.ax+"-axis", {anchor:"end", fs:9});
+      });
+      /* fixed-position limit readouts, so two close limits can never collide */
+      h += txt(40, Y1+31, "a = "+G.fmt(a,3)+" · b = "+G.fmt(b,3), {fs:9, mono:1, fill:ink});
+      h += txt(350, Y1+31, (mode === "std" ? "za" : "ua")+" = "+G.fmt(ga,3)+" · "+(mode === "std" ? "zb" : "ub")+" = "+G.fmt(gb,3),
+               {fs:9, mono:1, fill:ink});
+      /* the arrow between the panels */
+      h += '<line x1="300" y1="126" x2="340" y2="126" stroke="'+ex+'" stroke-width="1.6"/>';
+      h += '<path d="M340 126 L332 122 L332 130 Z" fill="'+ex+'"/>';
+      h += txt(310, 22, S.sub, {anchor:"middle", fs:11, fill:ex, weight:"600"});
+      h += txt(320, 114, "same area", {anchor:"middle", fs:9});
+      svg.innerHTML = h;
+
+      var LI = simp(function(t){ return S.fx(t,P); }, a, b, 400);
+      var RI = simp(function(t){ return S.fu(t,P); }, ga, gb, 400);
+      var EX = S.exact(a,b,P);
+      out.innerHTML =
+        "left panel: integral of "+S.lx+" from "+S.xv+" = "+G.fmt(a,4)+" to "+G.fmt(b,4)+" = <b>"+G.fmt(LI,7)+"</b>"+
+        "<br>right panel: integral of "+S.lu+" from "+S.uv+" = "+G.fmt(ga,4)+" to "+G.fmt(gb,4)+" = <b>"+G.fmt(RI,7)+"</b>"+
+        "<br>exact value "+S.exS+" = <b>"+G.fmt(EX,7)+"</b> · the two areas differ by "+tiny(LI-RI)+
+        " (only the rounding of the numerical integration) — equal, which is the substitution rule";
+    }
+    segWire(w, "data-sb", function(m){ mode = m; draw(); });
+    [sa, sb, sp].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-sub"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: the transformation formula, three panels ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-transform"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sp = w.querySelector("#f-tr-p"), sy = w.querySelector("#f-tr-y"), pc = w.querySelector("#f-tr-pc");
+    var mode = "ln";
+    var INF = "∞";
+
+    /* each map: the density of X, the map g, the inverse and its derivative, the density of Y.
+       xw / yw are the drawing windows; pmX / pmY fix the vertical scale of panels 1 and 3.      */
+    var TR = {
+      ln: { plab:"right end b", par:function(v){ return 1 + v/100*2; }, pfmt:function(P){ return G.fmt(P,2); },
+        sa:function(){ return 0; }, sb:function(P){ return P; },
+        pX:function(x,P){ return (x >= 0 && x <= P) ? 2*x/(P*P) : 0; },
+        xw:function(P){ return [-0.08*P, 1.14*P]; }, pmX:function(P){ return 2/P; },
+        g:function(x){ return Math.log(x); }, gdom:function(P){ return [1e-6, P]; },
+        yw:function(P){ return [Math.log(P)-3.2, Math.log(P)+0.8]; },
+        ya:function(){ return -Infinity; }, yb:function(P){ return Math.log(P); },
+        ginv:function(y){ return Math.exp(y); }, dginv:function(y){ return Math.exp(y); },
+        pY:function(y,P){ return (y <= Math.log(P)) ? 2*Math.exp(2*y)/(P*P) : 0; },
+        pmY:function(){ return 2; },
+        gS:"g(x) = ln x", pxS:function(P){ return "pX(x) = 2x/b² on [0, "+G.fmt(P,2)+"]"; },
+        pyS:function(P){ return "pY(y) = 2·exp(2y)/b²"; },
+        ginvS:"exp(y)", derS:"exp(y)",
+        supX:function(P){ return "(0, "+G.fmt(P,2)+"]"; },
+        supY:function(P){ return "(−"+INF+", ln b] = (−"+INF+", "+G.fmt(Math.log(P),4)+"]"; },
+        note:"ln is strictly increasing, so the derivative factor never needed its bars here — write them anyway." },
+
+      ex: { plab:"rate λ", par:function(v){ return 0.4 + v/100*2.6; }, pfmt:function(P){ return G.fmt(P,2); },
+        sa:function(){ return 0; }, sb:function(){ return Infinity; },
+        pX:function(x,P){ return x >= 0 ? P*Math.exp(-P*x) : 0; },
+        xw:function(P){ return [-0.2/P, 5/P]; }, pmX:function(P){ return P; },
+        g:function(x,P){ return Math.exp(-P*x); }, gdom:function(P){ return [0, 5/P]; },
+        yw:function(){ return [-0.08, 1.14]; },
+        ya:function(){ return 0; }, yb:function(){ return 1; },
+        ginv:function(y,P){ return -Math.log(y)/P; }, dginv:function(y,P){ return -1/(P*y); },
+        pY:function(y){ return (y > 0 && y <= 1) ? 1 : 0; },
+        pmY:function(){ return 1; },
+        gS:"g(x) = exp(−λx)", pxS:function(P){ return "pX(x) = λ·exp(−λx) on [0, "+INF+")"; },
+        pyS:function(){ return "pY(y) = 1 — a Unif(0,1)"; },
+        ginvS:"−ln(y)/λ", derS:"1/(λy)",
+        supX:function(){ return "[0, "+INF+")"; },
+        supY:function(){ return "(0, 1]"; },
+        note:"g decreases, so (g⁻¹)' is negative and the bars do real work — without them the density would come out negative." },
+
+      sq: { plab:"half-width w", par:function(v){ return 0.6 + v/100*1.4; }, pfmt:function(P){ return G.fmt(P,2); },
+        sa:function(P){ return -P; }, sb:function(P){ return P; },
+        pX:function(x,P){ return (x >= -P && x <= P) ? 1/(2*P) : 0; },
+        xw:function(P){ return [-1.2*P, 1.2*P]; }, pmX:function(P){ return 1/(2*P); },
+        g:function(x){ return x*x; }, gdom:function(P){ return [-1.2*P, 1.2*P]; },
+        yw:function(P){ return [-0.1*P*P, 1.22*P*P]; },
+        ya:function(){ return 0; }, yb:function(P){ return P*P; },
+        ginv:function(y){ return Math.sqrt(Math.max(y,0)); },
+        dginv:function(y){ return (y > 1e-9) ? 1/(2*Math.sqrt(y)) : Infinity; },
+        pY:function(y,P){ return (y > 1e-9 && y <= P*P) ? 1/(2*P*Math.sqrt(y)) : 0; },
+        pmY:function(P){ return 1/(2*P*Math.sqrt(0.05*P*P)); },
+        gS:"g(x) = x²", pxS:function(P){ return "pX(x) = 1/(2w) on [−"+G.fmt(P,2)+", "+G.fmt(P,2)+"]"; },
+        pyS:function(){ return "pY(y) = 1/(2w√y)"; },
+        ginvS:"+√y  (one of two branches)", derS:"1/(2√y)",
+        supX:function(P){ return "[−"+G.fmt(P,2)+", "+G.fmt(P,2)+"]"; },
+        supY:function(P){ return "[0, w²] = [0, "+G.fmt(P*P,4)+"]"; },
+        note:"x² is not monotone on a support that straddles 0 — the formula is not allowed here." },
+
+      af: { plab:"slope a (never 0)",
+        par:function(v){ return (v < 50) ? (-2.5 + (v/50)*2.2) : (0.3 + ((v-50)/50)*2.2); },
+        pfmt:function(P){ return G.fmt(P,2); },
+        sa:function(){ return 0; }, sb:function(){ return 1; },
+        pX:function(x){ return (x >= 0 && x <= 1) ? 1 : 0; },
+        xw:function(){ return [-0.18, 1.18]; }, pmX:function(){ return 1; },
+        g:function(x,P){ return P*x + 1; }, gdom:function(){ return [-0.18, 1.18]; },
+        yw:function(P){ var lo = Math.min(1, P+1), hi = Math.max(1, P+1), d = hi-lo;
+          return [lo - 0.22*d, hi + 0.22*d]; },
+        ya:function(P){ return Math.min(1, P+1); }, yb:function(P){ return Math.max(1, P+1); },
+        ginv:function(y,P){ return (y-1)/P; }, dginv:function(y,P){ return 1/P; },
+        pY:function(y,P){ var lo = Math.min(1,P+1), hi = Math.max(1,P+1);
+          return (y >= lo && y <= hi) ? 1/Math.abs(P) : 0; },
+        pmY:function(P){ return 1/Math.abs(P); },
+        gS:"g(x) = a·x + 1", pxS:function(){ return "pX(x) = 1 on [0, 1]"; },
+        pyS:function(P){ return "pY(y) = 1/|a| = "+G.fmt(1/Math.abs(P),4); },
+        ginvS:"(y − 1)/a", derS:"1/|a|",
+        supX:function(){ return "[0, 1]"; },
+        supY:function(P){ return "["+G.fmt(Math.min(1,P+1),3)+", "+G.fmt(Math.max(1,P+1),3)+"]"; },
+        note:"a straight line stretches the support by the factor |a| and divides the height by the same |a|." }
+    };
+
+    function draw(){
+      var S = TR[mode], P = S.par(+sp.value);
+      var xw = S.xw(P), yw = S.yw(P);
+      var y = yw[0] + (+sy.value)/100*(yw[1]-yw[0]);
+      sp.parentNode.querySelector(".val").textContent = S.pfmt(P);
+      sy.parentNode.querySelector(".val").textContent = G.fmt(y,3);
+      pc.querySelector("label").textContent = S.plab;
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          soft = G.css("--accent-soft"), ok = G.css("--ok"), bad = G.css("--bad"), line = G.css("--line");
+      var Y0 = 52, Y1 = 186, i, t;
+      var PX = [[38,196],[236,394],[434,598]];
+      var h = '';
+
+      /* ---- panel 1: the density of X ---- */
+      var p1 = PX[0], pmX = S.pmX(P)*1.18;
+      var x1 = function(v){ return p1[0] + (v-xw[0])/(xw[1]-xw[0])*(p1[1]-p1[0]); };
+      var y1 = function(v){ return Y1 - Math.max(0, Math.min(v, pmX))/pmX*(Y1-Y0); };
+      var cu = '';
+      for(i=0;i<=320;i++){ t = xw[0] + i*(xw[1]-xw[0])/320; cu += (i?'L':'M')+x1(t).toFixed(1)+' '+y1(S.pX(t,P)).toFixed(1); }
+      h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+p1[0]+'" y1="'+Y1+'" x2="'+p1[1]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+p1[0]+'" y1="'+Y0+'" x2="'+p1[0]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      var sxa = Math.max(S.sa(P), xw[0]), sxb = Math.min(S.sb(P), xw[1]);
+      h += '<line x1="'+x1(sxa).toFixed(1)+'" y1="'+Y1+'" x2="'+x1(sxb).toFixed(1)+'" y2="'+Y1+'" stroke="'+ex+'" stroke-width="5"/>';
+
+      /* ---- panel 2: the map ---- */
+      var p2 = PX[1], gd = S.gdom(P);
+      var x2 = function(v){ return p2[0] + (v-xw[0])/(xw[1]-xw[0])*(p2[1]-p2[0]); };
+      var y2 = function(v){ return Y1 - (v-yw[0])/(yw[1]-yw[0])*(Y1-Y0); };
+      var gl = '', started = false;
+      for(i=0;i<=320;i++){
+        t = gd[0] + i*(gd[1]-gd[0])/320;
+        if(t < xw[0] || t > xw[1]) continue;
+        var gv = S.g(t,P);
+        if(!isFinite(gv) || gv < yw[0] || gv > yw[1]){ started = false; continue; }
+        gl += (started?'L':'M')+x2(t).toFixed(1)+' '+y2(gv).toFixed(1); started = true;
+      }
+      h += '<path d="'+gl+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+p2[0]+'" y1="'+Y1+'" x2="'+p2[1]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+p2[0]+'" y1="'+Y0+'" x2="'+p2[0]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+x2(sxa).toFixed(1)+'" y1="'+Y1+'" x2="'+x2(sxb).toFixed(1)+'" y2="'+Y1+'" stroke="'+ex+'" stroke-width="5"/>';
+      var sya = Math.max(S.ya(P), yw[0]), syb = Math.min(S.yb(P), yw[1]);
+      h += '<line x1="'+p2[0]+'" y1="'+y2(sya).toFixed(1)+'" x2="'+p2[0]+'" y2="'+y2(syb).toFixed(1)+'" stroke="'+ex+'" stroke-width="5"/>';
+
+      /* ---- panel 3: the density of Y ---- */
+      var p3 = PX[2], pmY = S.pmY(P)*1.18;
+      var x3 = function(v){ return p3[0] + (v-yw[0])/(yw[1]-yw[0])*(p3[1]-p3[0]); };
+      var y3 = function(v){ return Y1 - Math.max(0, Math.min(v, pmY))/pmY*(Y1-Y0); };
+      cu = '';
+      for(i=0;i<=320;i++){ t = yw[0] + i*(yw[1]-yw[0])/320; cu += (i?'L':'M')+x3(t).toFixed(1)+' '+y3(S.pY(t,P)).toFixed(1); }
+      h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      if(mode === "sq"){
+        var nv = '';
+        for(i=0;i<=320;i++){ t = yw[0] + i*(yw[1]-yw[0])/320;
+          nv += (i?'L':'M')+x3(t).toFixed(1)+' '+y3(S.pY(t,P)/2).toFixed(1); }
+        h += '<path d="'+nv+'" fill="none" stroke="'+bad+'" stroke-width="1.6" stroke-dasharray="5 4"/>';
+      }
+      h += '<line x1="'+p3[0]+'" y1="'+Y1+'" x2="'+p3[1]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+p3[0]+'" y1="'+Y0+'" x2="'+p3[0]+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+x3(sya).toFixed(1)+'" y1="'+Y1+'" x2="'+x3(syb).toFixed(1)+'" y2="'+Y1+'" stroke="'+ex+'" stroke-width="5"/>';
+
+      /* ---- the chosen point, marked in all three panels ---- */
+      var inSupY = (y >= S.ya(P) - 1e-12) && (y <= S.yb(P) + 1e-12);
+      var roots = [];
+      if(inSupY){
+        if(mode === "sq"){ var r = Math.sqrt(Math.max(y,0)); roots = [-r, r]; }
+        else roots = [S.ginv(y,P)];
+      }
+      roots.forEach(function(xr){
+        if(xr < xw[0] || xr > xw[1]) return;
+        h += '<line x1="'+x1(xr).toFixed(1)+'" y1="'+Y0+'" x2="'+x1(xr).toFixed(1)+'" y2="'+Y1+'" stroke="'+ink+'" stroke-dasharray="4 3"/>';
+        h += '<circle cx="'+x1(xr).toFixed(1)+'" cy="'+y1(S.pX(xr,P)).toFixed(1)+'" r="4" fill="'+ink+'"/>';
+        h += '<line x1="'+x2(xr).toFixed(1)+'" y1="'+y2(y).toFixed(1)+'" x2="'+x2(xr).toFixed(1)+'" y2="'+Y1+'" stroke="'+ink+'" stroke-dasharray="4 3"/>';
+        h += '<circle cx="'+x2(xr).toFixed(1)+'" cy="'+y2(y).toFixed(1)+'" r="4" fill="'+ink+'"/>';
+      });
+      h += '<line x1="'+p2[0]+'" y1="'+y2(y).toFixed(1)+'" x2="'+p2[1]+'" y2="'+y2(y).toFixed(1)+'" stroke="'+ink+'" stroke-dasharray="4 3"/>';
+      h += '<line x1="'+x3(y).toFixed(1)+'" y1="'+Y0+'" x2="'+x3(y).toFixed(1)+'" y2="'+Y1+'" stroke="'+ink+'" stroke-dasharray="4 3"/>';
+      h += '<circle cx="'+x3(y).toFixed(1)+'" cy="'+y3(S.pY(y,P)).toFixed(1)+'" r="4" fill="'+ink+'"/>';
+
+      /* ---- arrows between the panels ---- */
+      [[196,236],[394,434]].forEach(function(seg){
+        h += '<line x1="'+(seg[0]+6)+'" y1="118" x2="'+(seg[1]-6)+'" y2="118" stroke="'+ex+'" stroke-width="1.5"/>';
+        h += '<path d="M'+(seg[1]-6)+' 118 L'+(seg[1]-14)+' 114 L'+(seg[1]-14)+' 122 Z" fill="'+ex+'"/>';
+      });
+
+      /* ---- fixed-position captions: nothing here moves with a slider ---- */
+      h += txt(38, 15, "1 · density of X", {fs:10, fill:ink, weight:"600"});
+      h += txt(236, 15, "2 · the map y = g(x)", {fs:10, fill:ink, weight:"600"});
+      h += txt(434, 15, "3 · density of Y = g(X)", {fs:10, fill:ink, weight:"600"});
+      h += txt(38, 30, S.pxS(P), {fs:9});
+      h += txt(236, 30, S.gS, {fs:9});
+      h += txt(434, 30, S.pyS(P), {fs:9});
+      h += txt(38, 44, "x-axis " + G.fmt(xw[0],2) + " to " + G.fmt(xw[1],2), {fs:8});
+      h += txt(236, 44, "x across, y up", {fs:8});
+      h += txt(434, 44, "y-axis " + G.fmt(yw[0],2) + " to " + G.fmt(yw[1],2), {fs:8});
+      h += txt(38, Y1+15, "support of X (thick): " + S.supX(P), {fs:9, fill:ex});
+      h += txt(236, Y1+15, "thick on x: old support", {fs:9, fill:ex});
+      h += txt(236, Y1+28, "thick on y: its image under g", {fs:9, fill:ex});
+      h += txt(434, Y1+15, "support of Y: " + S.supY(P), {fs:9, fill:ex});
+      h += txt(38, Y1+28, "dot: x = g⁻¹(y) = " + (roots.length ? G.fmt(roots[roots.length-1],4) : "none"), {fs:9, fill:ink});
+      h += txt(434, Y1+28, "dot: pY(y) = " + G.fmt(S.pY(y,P),5), {fs:9, fill:ink});
+      h += txt(38, Y1+44, "chosen point y = " + G.fmt(y,4), {fs:9, mono:1, fill:ink});
+      if(mode === "sq") h += txt(598, Y1+44, "dashed red: the formula alone — only half", {anchor:"end", fs:9, fill:bad});
+      else h += txt(434, Y1+44, inSupY ? "y is inside the support of Y" : "y is outside the support → pY(y) = 0",
+                    {fs:9, fill: inSupY ? ok : bad});
+      svg.innerHTML = h;
+
+      /* ---- readout ---- */
+      var r1, s1;
+      if(!inSupY){
+        out.innerHTML =
+          "y = <b>"+G.fmt(y,4)+"</b> lies <b>outside</b> the support of Y, which is "+S.supY(P)+
+          " — so pY(y) = <b>0</b>, with nothing to compute."+
+          "<br>support: X on "+S.supX(P)+" &nbsp;→&nbsp; Y on "+S.supY(P)+
+          " &nbsp;(step 4 of the recipe, and a separate credit on the paper)"+
+          "<br>"+S.note;
+      } else if(mode === "sq"){
+        var rr = Math.sqrt(Math.max(y,1e-12));
+        var naive = S.pX(rr,P)*(1/(2*rr)), truth = S.pY(y,P);
+        out.innerHTML =
+          "g⁻¹(y) = ±√y = ±<b>"+G.fmt(rr,5)+"</b> — <b>two</b> values of x give this y, so g is not invertible and the formula does not apply."+
+          "<br>one branch only: pX(+√y)·|1/(2√y)| = "+G.fmt(S.pX(rr,P),5)+" · "+G.fmt(1/(2*rr),5)+" = <b>"+G.fmt(naive,7)+"</b>"+
+          " — exactly <b>half</b> of the truth <b>"+G.fmt(truth,7)+"</b> (ratio "+G.fmt(truth/naive,4)+")"+
+          "<br>the cdf route instead: P(X² ≤ y) = P(−√y ≤ X ≤ √y) = √y/w, and differentiating in y gives pY(y) = 1/(2w√y) = <b>"+G.fmt(truth,7)+"</b>"+
+          "<br>support: X on "+S.supX(P)+" &nbsp;→&nbsp; Y on "+S.supY(P)+
+          " &nbsp;(squaring folds the two halves onto one)";
+      } else {
+        var xr2 = S.ginv(y,P), der = S.dginv(y,P), pXv = S.pX(xr2,P), pYv = S.pY(y,P);
+        out.innerHTML =
+          "g⁻¹(y) = "+S.ginvS+" = <b>"+G.fmt(xr2,5)+"</b>"+
+          " &nbsp;·&nbsp; (g⁻¹)'(y) = <b>"+G.fmt(der,5)+"</b>"+
+          " &nbsp;·&nbsp; |(g⁻¹)'(y)| = "+S.derS+" = <b>"+G.fmt(Math.abs(der),5)+"</b>"+
+          "<br>pY(y) = pX(g⁻¹(y)) · |(g⁻¹)'(y)| = "+G.fmt(pXv,5)+" · "+G.fmt(Math.abs(der),5)+
+          " = <b>"+G.fmt(pYv,7)+"</b> &nbsp;(the dot on panel 3)"+
+          "<br>support: X on "+S.supX(P)+" &nbsp;→&nbsp; Y on "+S.supY(P)+
+          " &nbsp;(step 4, and a separate credit on the paper)"+
+          "<br>"+S.note;
+      }
+    }
+    segWire(w, "data-tg", function(m){ mode = m; draw(); });
+    [sp, sy].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-trans"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: standardise, then fold with Phi ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-phi"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var sa = w.querySelector("#f-ph-a"), sm = w.querySelector("#f-ph-m"), ss = w.querySelector("#f-ph-s");
+    var ev = "out";
+
+    function draw(){
+      var a = (+sa.value)/100, mu = (+sm.value)/10, sg = (+ss.value)/10;
+      sa.parentNode.querySelector(".val").textContent = G.fmt(a,2);
+      sm.parentNode.querySelector(".val").textContent = G.fmt(mu,1);
+      ss.parentNode.querySelector(".val").textContent = G.fmt(sg,1);
+
+      var tail = Phi(-a), pOut = 2*tail, pIn = 1 - pOut;
+      var loX = mu - a*sg, hiX = mu + a*sg;
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          soft = G.css("--accent-soft");
+      var Y0 = 58, Y1 = 184, i, t;
+      var PAN = [
+        { x0:40, x1:288, lo:mu-4*sg, hi:mu+4*sg, f:function(v){ return npdf((v-mu)/sg)/sg; },
+          ca:loX, cb:hiX, pk:npdf(0)/sg },
+        { x0:348, x1:600, lo:-4, hi:4, f:function(v){ return npdf(v); }, ca:-a, cb:a, pk:npdf(0) }
+      ];
+      var h = '';
+      PAN.forEach(function(p){
+        var sx = function(v){ return p.x0 + (v-p.lo)/(p.hi-p.lo)*(p.x1-p.x0); };
+        var sy = function(v){ return Y1 - v/(p.pk*1.16)*(Y1-Y0); };
+        /* the shaded pieces of the event */
+        var segs = (ev === "out") ? [[p.lo, Math.min(p.ca,p.hi)], [Math.max(p.cb,p.lo), p.hi]]
+                                  : [[Math.max(p.ca,p.lo), Math.min(p.cb,p.hi)]];
+        segs.forEach(function(sg2){
+          if(!(sg2[1] > sg2[0])) return;
+          var d = 'M'+sx(sg2[0]).toFixed(1)+' '+Y1;
+          for(i=0;i<=140;i++){ t = sg2[0] + i*(sg2[1]-sg2[0])/140; d += 'L'+sx(t).toFixed(1)+' '+sy(p.f(t)).toFixed(1); }
+          h += '<path d="'+d+'L'+sx(sg2[1]).toFixed(1)+' '+Y1+'Z" fill="'+soft+'" stroke="none"/>';
+        });
+        var cu = '';
+        for(i=0;i<=300;i++){ t = p.lo + i*(p.hi-p.lo)/300; cu += (i?'L':'M')+sx(t).toFixed(1)+' '+sy(p.f(t)).toFixed(1); }
+        h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+        h += '<line x1="'+p.x0+'" y1="'+Y1+'" x2="'+p.x1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+        [p.ca, p.cb].forEach(function(c){
+          if(c <= p.lo || c >= p.hi) return;
+          h += '<line x1="'+sx(c).toFixed(1)+'" y1="'+Y0+'" x2="'+sx(c).toFixed(1)+'" y2="'+Y1+'" stroke="'+ex+'" stroke-width="1.6" stroke-dasharray="4 3"/>';
+        });
+        for(var k=0;k<=4;k++){ var v = p.lo + k*(p.hi-p.lo)/4;
+          h += '<line x1="'+sx(v).toFixed(1)+'" y1="'+Y1+'" x2="'+sx(v).toFixed(1)+'" y2="'+(Y1+4)+'" stroke="'+mut+'"/>';
+          h += txt(sx(v), Y1+15, G.fmt(v,2), {anchor:"middle", fs:9, mono:1}); }
+      });
+      /* arrow between the panels */
+      h += '<line x1="300" y1="122" x2="340" y2="122" stroke="'+ex+'" stroke-width="1.6"/>';
+      h += '<path d="M340 122 L332 118 L332 126 Z" fill="'+ex+'"/>';
+
+      var areaL = (ev === "out")
+        ? simp(function(v){ return npdf((v-mu)/sg)/sg; }, mu-9*sg, loX, 400) + simp(function(v){ return npdf((v-mu)/sg)/sg; }, hiX, mu+9*sg, 400)
+        : simp(function(v){ return npdf((v-mu)/sg)/sg; }, loX, hiX, 400);
+      var areaR = (ev === "out")
+        ? 2*simp(npdf, a, 9, 400)
+        : simp(npdf, -a, a, 400);
+
+      h += txt(40, 15, "X ~ N(μ, σ²) with μ = "+G.fmt(mu,1)+", σ = "+G.fmt(sg,1), {fs:10, fill:ink, weight:"600"});
+      h += txt(348, 15, "Z = (X − μ)/σ ~ N(0, 1)", {fs:10, fill:ink, weight:"600"});
+      h += txt(40, 30, "cuts at μ ± aσ = "+G.fmt(loX,3)+" and "+G.fmt(hiX,3), {fs:9, fill:ex});
+      h += txt(348, 30, "cuts at ±a = ±"+G.fmt(a,3)+" — μ and σ are gone", {fs:9, fill:ex});
+      h += txt(40, 44, "shaded: " + (ev === "out" ? "|X − μ| ≥ aσ, the two tails" : "|X − μ| ≤ aσ, the middle"), {fs:9});
+      h += txt(348, 44, "shaded: " + (ev === "out" ? "|Z| ≥ a" : "|Z| ≤ a"), {fs:9});
+      h += txt(320, 112, "standardise", {anchor:"middle", fs:9, fill:ex});
+      h += txt(320, 138, "same area", {anchor:"middle", fs:9});
+      h += txt(40, Y1+31, "x-axis · shaded area " + G.fmt(areaL,5), {fs:9, fill:ink});
+      h += txt(348, Y1+31, "z-axis · shaded area " + G.fmt(areaR,5), {fs:9, fill:ink});
+      h += txt(600, 45, (ev === "out" ? "2Φ(−a) = " : "2Φ(a) − 1 = ") + G.fmt(ev === "out" ? pOut : pIn, 5),
+               {anchor:"end", fs:11, fill:ex, weight:"600"});
+      svg.innerHTML = h;
+
+      if(ev === "out"){
+        out.innerHTML =
+          "a = <b>"+G.fmt(a,2)+"</b> · μ = "+G.fmt(mu,1)+" · σ = "+G.fmt(sg,1)+
+          "<br><b>step 1, standardise:</b> P(|X − μ| ≥ aσ) = P(|Z| ≥ a); the cuts "+G.fmt(loX,3)+" and "+G.fmt(hiX,3)+
+          " become −"+G.fmt(a,3)+" and +"+G.fmt(a,3)+", and the picture on the right no longer depends on μ or σ"+
+          "<br><b>step 2, fold:</b> one tail is Φ(−a) = 1 − Φ(a) = <b>"+G.fmt(tail,7)+"</b>; the two tails are mirror images, so"+
+          "<br>P(|Z| ≥ a) = 2(1 − Φ(a)) = 2Φ(−a) = 2 · "+G.fmt(tail,7)+" = <b>"+G.fmt(pOut,7)+"</b>"+
+          "<br>numerical check: left picture "+G.fmt(areaL,7)+" · right picture "+G.fmt(areaR,7)+
+          " · they differ by "+tiny(areaL-areaR)+" (rounding only)";
+      } else {
+        out.innerHTML =
+          "a = <b>"+G.fmt(a,2)+"</b> · μ = "+G.fmt(mu,1)+" · σ = "+G.fmt(sg,1)+
+          "<br><b>step 1, standardise:</b> P(|X − μ| ≤ aσ) = P(|Z| ≤ a), with the cuts "+G.fmt(loX,3)+" and "+G.fmt(hiX,3)+
+          " becoming −"+G.fmt(a,3)+" and +"+G.fmt(a,3)+
+          "<br><b>step 2, the middle is what the tails leave over:</b> P(|Z| ≤ a) = 1 − 2Φ(−a) = 2Φ(a) − 1 = <b>"+G.fmt(pIn,7)+"</b>"+
+          "<br>this is the confidence-interval form: a level 1 − α = "+G.fmt(pIn,5)+
+          " goes with α = "+G.fmt(pOut,5)+" split over the two tails, so a = z₁₋ₐₗₚₕ₂ here"+
+          "<br>numerical check: left picture "+G.fmt(areaL,7)+" · right picture "+G.fmt(areaR,7)+
+          " · they differ by "+tiny(areaL-areaR)+" (rounding only)";
+      }
+    }
+    segWire(w, "data-pe", function(e){ ev = e; draw(); });
+    [sa, sm, ss].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-phi"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: a region, its slice, and the inner limits ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-region"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var st = w.querySelector("#f-rg-t"), sp = w.querySelector("#f-rg-p"), pc = w.querySelector("#f-rg-pc");
+    var reg = "rect", ord = "x";
+
+    /* for each region: the drawing window (square, so the disc looks round), the span of the
+       outer variable, and the inner limits at a given outer value — in both orders.            */
+    var RG = {
+      rect: { plab:"(no parameter)", par:function(){ return 0; }, win:function(){ return [-0.1, 1.1]; },
+        name:function(){ return "rectangle 0.2 ≤ x ≤ 0.9, 0.1 ≤ y ≤ 0.7"; },
+        span:function(P,o){ return (o === "x") ? [0.2, 0.9] : [0.1, 0.7]; },
+        inner:function(t,P,o){ return (o === "x") ? [0.1, 0.7] : [0.2, 0.9]; },
+        innerS:function(P,o){ return (o === "x") ? ["0.1", "0.7"] : ["0.2", "0.9"]; },
+        area:function(){ return 0.7*0.6; },
+        note:"a rectangle is the easy case: the inner limits are plain numbers, free of the outer variable." },
+      tri:  { plab:"(no parameter)", par:function(){ return 0; }, win:function(){ return [-0.1, 1.1]; },
+        name:function(){ return "triangle 0 ≤ x ≤ y ≤ 1"; },
+        span:function(){ return [0, 1]; },
+        inner:function(t,P,o){ return (o === "x") ? [t, 1] : [0, t]; },
+        innerS:function(P,o){ return (o === "x") ? ["x", "1"] : ["0", "y"]; },
+        area:function(){ return 0.5; },
+        note:"here the inner limits contain the outer variable — that is how a non-rectangular region is described." },
+      half: { plab:"the level z", par:function(v){ return 0.3 + v/100*1.6; }, win:function(){ return [-0.15, 2.05]; },
+        name:function(P){ return "half-plane x + y ≤ z with x, y ≥ 0, z = "+G.fmt(P,3); },
+        span:function(P){ return [0, P]; },
+        inner:function(t,P,o){ return [0, P - t]; },
+        innerS:function(P,o){ return (o === "x") ? ["0", "z − x"] : ["0", "z − y"]; },
+        area:function(P){ return P*P/2; },
+        note:"this is the region behind P(X + Y ≤ z); differentiating the answer in z gives the convolution formula." },
+      disc: { plab:"radius r", par:function(v){ return 0.25 + v/100*0.75; }, win:function(){ return [-1.15, 1.15]; },
+        name:function(P){ return "disc x² + y² ≤ r², r = "+G.fmt(P,3); },
+        span:function(P){ return [-P, P]; },
+        inner:function(t,P){ var s = Math.sqrt(Math.max(0, P*P - t*t)); return [-s, s]; },
+        innerS:function(P,o){ return (o === "x") ? ["−√(r² − x²)", "+√(r² − x²)"]
+                                                 : ["−√(r² − y²)", "+√(r² − y²)"]; },
+        area:function(P){ return Math.PI*P*P; },
+        note:"the square root is where the ±√(r² − x²) of the marginal density of a uniform disc comes from." }
+    };
+
+    function draw(){
+      var S = RG[reg], P = S.par(+sp.value), win = S.win(P);
+      var span = S.span(P, ord);
+      var t = span[0] + (+st.value)/100*(span[1]-span[0]);
+      var inn = S.inner(t, P, ord), len = Math.max(0, inn[1]-inn[0]);
+      sp.parentNode.querySelector(".val").textContent = (reg === "rect" || reg === "tri") ? "—" : G.fmt(P,3);
+      st.parentNode.querySelector(".val").textContent = ord + " = " + G.fmt(t,3);
+      pc.querySelector("label").textContent = S.plab;
+      pc.style.display = (reg === "rect" || reg === "tri") ? "none" : "";
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          soft = G.css("--accent-soft"), line = G.css("--line");
+      var i, u, h = '';
+
+      /* ---- left panel: the region in the plane ---- */
+      var AX0 = 48, AX1 = 258, AY0 = 30, AY1 = 240;
+      var ax = function(v){ return AX0 + (v-win[0])/(win[1]-win[0])*(AX1-AX0); };
+      var ay = function(v){ return AY1 - (v-win[0])/(win[1]-win[0])*(AY1-AY0); };
+      /* the region, drawn as the union of thin slices in the outer variable (works for every shape) */
+      var osp = S.span(P, "x"), d = '';
+      for(i=0;i<=240;i++){
+        u = osp[0] + i*(osp[1]-osp[0])/240;
+        var iv = S.inner(u, P, "x");
+        if(iv[1] <= iv[0]) continue;
+        d += '<line x1="'+ax(u).toFixed(1)+'" y1="'+ay(iv[0]).toFixed(1)+'" x2="'+ax(u).toFixed(1)+'" y2="'+ay(iv[1]).toFixed(1)+'" stroke="'+soft+'" stroke-width="1.6"/>';
+      }
+      h += d;
+      /* axes through 0 */
+      h += '<line x1="'+AX0+'" y1="'+ay(0).toFixed(1)+'" x2="'+AX1+'" y2="'+ay(0).toFixed(1)+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+ax(0).toFixed(1)+'" y1="'+AY0+'" x2="'+ax(0).toFixed(1)+'" y2="'+AY1+'" stroke="'+mut+'"/>';
+      h += '<rect x="'+AX0+'" y="'+AY0+'" width="'+(AX1-AX0)+'" height="'+(AY1-AY0)+'" fill="none" stroke="'+line+'"/>';
+      /* the slice: the whole line thin, the part inside the region thick */
+      if(ord === "x"){
+        h += '<line x1="'+ax(t).toFixed(1)+'" y1="'+AY0+'" x2="'+ax(t).toFixed(1)+'" y2="'+AY1+'" stroke="'+ink+'" stroke-dasharray="3 3"/>';
+        if(len > 0) h += '<line x1="'+ax(t).toFixed(1)+'" y1="'+ay(inn[0]).toFixed(1)+'" x2="'+ax(t).toFixed(1)+'" y2="'+ay(inn[1]).toFixed(1)+'" stroke="'+ex+'" stroke-width="4"/>';
+      } else {
+        h += '<line x1="'+AX0+'" y1="'+ay(t).toFixed(1)+'" x2="'+AX1+'" y2="'+ay(t).toFixed(1)+'" stroke="'+ink+'" stroke-dasharray="3 3"/>';
+        if(len > 0) h += '<line x1="'+ax(inn[0]).toFixed(1)+'" y1="'+ay(t).toFixed(1)+'" x2="'+ax(inn[1]).toFixed(1)+'" y2="'+ay(t).toFixed(1)+'" stroke="'+ex+'" stroke-width="4"/>';
+      }
+
+      /* ---- right panel: the length of the slice against the outer variable ---- */
+      var BX0 = 352, BX1 = 600, BY0 = 46, BY1 = 240;
+      var lmax = 0;
+      for(i=0;i<=240;i++){ u = span[0] + i*(span[1]-span[0])/240;
+        var q = S.inner(u, P, ord); lmax = Math.max(lmax, q[1]-q[0]); }
+      if(!(lmax > 0)) lmax = 1;
+      var bx = function(v){ return BX0 + (v-span[0])/(span[1]-span[0])*(BX1-BX0); };
+      var by = function(v){ return BY1 - Math.max(0,v)/(lmax*1.16)*(BY1-BY0); };
+      var pd = 'M'+bx(span[0]).toFixed(1)+' '+BY1;
+      for(i=0;i<=240;i++){ u = span[0] + i*(span[1]-span[0])/240;
+        var q2 = S.inner(u, P, ord); pd += 'L'+bx(u).toFixed(1)+' '+by(Math.max(0,q2[1]-q2[0])).toFixed(1); }
+      pd += 'L'+bx(span[1]).toFixed(1)+' '+BY1+'Z';
+      h += '<path d="'+pd+'" fill="'+soft+'" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+BX0+'" y1="'+BY1+'" x2="'+BX1+'" y2="'+BY1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+BX0+'" y1="'+BY0+'" x2="'+BX0+'" y2="'+BY1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+bx(t).toFixed(1)+'" y1="'+BY0+'" x2="'+bx(t).toFixed(1)+'" y2="'+BY1+'" stroke="'+ex+'" stroke-dasharray="4 3"/>';
+      h += '<circle cx="'+bx(t).toFixed(1)+'" cy="'+by(len).toFixed(1)+'" r="4.5" fill="'+ex+'"/>';
+
+      /* ---- both iterated integrals, computed numerically ---- */
+      function iter(o){ var sp2 = S.span(P, o);
+        return simp(function(v){ var q = S.inner(v, P, o); return Math.max(0, q[1]-q[0]); }, sp2[0], sp2[1], 600); }
+      var Ix = iter("x"), Iy = iter("y"), Aex = S.area(P);
+
+      /* fixed-position captions */
+      h += txt(48, 15, S.name(P), {fs:10, fill:ink, weight:"600"});
+      h += txt(352, 15, "length of the slice, against " + ord, {fs:10, fill:ink, weight:"600"});
+      h += txt(352, 30, "area under this curve = area of the region = " + G.fmt(Aex,4), {fs:9});
+      h += txt(48, AY1+15, "horizontal: x from " + G.fmt(win[0],2) + " to " + G.fmt(win[1],2), {fs:9});
+      h += txt(48, AY1+28, "vertical: y, same range · dashed line = the slice", {fs:9});
+      h += txt(352, AY1+15, ord + " runs from " + G.fmt(span[0],3) + " to " + G.fmt(span[1],3) + " (the outer limits)", {fs:9});
+      h += txt(352, AY1+28, "slice length at " + ord + " = " + G.fmt(t,3) + " is " + G.fmt(len,4), {fs:9, fill:ex});
+      svg.innerHTML = h;
+
+      var iS = S.innerS(P, ord), other = (ord === "x") ? "y" : "x";
+      out.innerHTML =
+        "outer variable <b>" + ord + " = " + G.fmt(t,4) + "</b> → inner limits: <b>" + other + "</b> runs from <b>" +
+          G.fmt(inn[0],4) + "</b> to <b>" + G.fmt(inn[1],4) + "</b>, a slice of length <b>" + G.fmt(len,4) + "</b>" +
+        "<br>as symbols: " + other + " from " + iS[0] + " to " + iS[1] +
+          " &nbsp;— the outer limits are the plain numbers " + G.fmt(span[0],3) + " and " + G.fmt(span[1],3) +
+        "<br>order dy dx: ∫(x = " + G.fmt(S.span(P,"x")[0],3) + " … " + G.fmt(S.span(P,"x")[1],3) +
+          ") ∫(y = " + S.innerS(P,"x")[0] + " … " + S.innerS(P,"x")[1] + ") 1 dy dx = <b>" + G.fmt(Ix,7) + "</b>" +
+        "<br>order dx dy: ∫(y = " + G.fmt(S.span(P,"y")[0],3) + " … " + G.fmt(S.span(P,"y")[1],3) +
+          ") ∫(x = " + S.innerS(P,"y")[0] + " … " + S.innerS(P,"y")[1] + ") 1 dx dy = <b>" + G.fmt(Iy,7) + "</b>" +
+        "<br>exact area " + G.fmt(Aex,7) + " · the two orders differ by " + tiny(Ix-Iy) +
+          " (rounding only) — that is Rule 2" +
+        "<br>" + S.note;
+    }
+    segWire(w, "data-rg", function(r){ reg = r; draw(); });
+    segWire(w, "data-ro", function(o){ ord = o; draw(); });
+    [st, sp].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-reg"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: convexity, the chord, and Jensen ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-convex"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var s1 = w.querySelector("#f-cx-1"), s2 = w.querySelector("#f-cx-2"), sal = w.querySelector("#f-cx-a");
+    var fn = "sq";
+
+    var CX = {
+      sq:  { g:function(x){ return x*x; }, g2:function(){ return 2; }, dom:[-2.2, 2.2],
+             gS:"g(x) = x²", g1S:"g'(x) = 2x", g2S:"g''(x) = 2", conv:1,
+             jen:"E[X]² ≤ E[X²] — which is exactly Var[X] ≥ 0" },
+      exp: { g:function(x){ return Math.exp(x); }, g2:function(x){ return Math.exp(x); }, dom:[-1.6, 1.6],
+             gS:"g(x) = exp(x)", g1S:"g'(x) = exp(x)", g2S:"g''(x) = exp(x)", conv:1,
+             jen:"exp(E[X]) ≤ E[exp(X)] — the moment-generating direction" },
+      nlog:{ g:function(x){ return -Math.log(x); }, g2:function(x){ return 1/(x*x); }, dom:[0.15, 3.2],
+             gS:"g(x) = −ln x", g1S:"g'(x) = −1/x", g2S:"g''(x) = 1/x²", conv:1,
+             jen:"−ln E[X] ≤ E[−ln X], the same as E[ln X] ≤ ln E[X]" },
+      log: { g:function(x){ return Math.log(x); }, g2:function(x){ return -1/(x*x); }, dom:[0.15, 3.2],
+             gS:"g(x) = ln x", g1S:"g'(x) = 1/x", g2S:"g''(x) = −1/x²", conv:-1,
+             jen:"E[ln X] ≤ ln E[X] — concave, so the inequality points the other way" },
+      sqrt:{ g:function(x){ return Math.sqrt(x); }, g2:function(x){ return -0.25*Math.pow(x,-1.5); }, dom:[0.05, 3.2],
+             gS:"g(x) = √x", g1S:"g'(x) = 1/(2√x)", g2S:"g''(x) = −1/(4x³ᐟ²)", conv:-1,
+             jen:"E[√X] ≤ √(E[X]) — concave, so the inequality points the other way" }
+    };
+
+    function draw(){
+      var S = CX[fn], dlo = S.dom[0], dhi = S.dom[1];
+      var va = dlo + (+s1.value)/100*(dhi-dlo), vb = dlo + (+s2.value)/100*(dhi-dlo);
+      var x1 = Math.min(va, vb), x2 = Math.max(va, vb);
+      if(x2 - x1 < 0.06*(dhi-dlo)){ var mid = (x1+x2)/2, hw = 0.03*(dhi-dlo);
+        x1 = Math.max(dlo, mid-hw); x2 = Math.min(dhi, mid+hw); }
+      var al = (+sal.value)/100;
+      var m = al*x1 + (1-al)*x2;
+      var gc = S.g(m), ch = al*S.g(x1) + (1-al)*S.g(x2);
+      s1.parentNode.querySelector(".val").textContent = G.fmt(x1,3);
+      s2.parentNode.querySelector(".val").textContent = G.fmt(x2,3);
+      sal.parentNode.querySelector(".val").textContent = G.fmt(al,2);
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          ok = G.css("--ok"), line = G.css("--line");
+      var X0 = 50, X1 = 600, Y0 = 48, Y1 = 184, i, t;
+      var vlo = Infinity, vhi = -Infinity;
+      for(i=0;i<=300;i++){ t = dlo + i*(dhi-dlo)/300; var gv = S.g(t);
+        if(isFinite(gv)){ vlo = Math.min(vlo, gv); vhi = Math.max(vhi, gv); } }
+      var pad = 0.1*(vhi-vlo); vlo -= pad; vhi += pad;
+      var px = function(v){ return X0 + (v-dlo)/(dhi-dlo)*(X1-X0); };
+      var py = function(v){ return Y1 - (v-vlo)/(vhi-vlo)*(Y1-Y0); };
+
+      var h = '', cu = '';
+      for(i=0;i<=300;i++){ t = dlo + i*(dhi-dlo)/300; cu += (i?'L':'M')+px(t).toFixed(1)+' '+py(S.g(t)).toFixed(1); }
+      h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      /* the chord */
+      h += '<line x1="'+px(x1).toFixed(1)+'" y1="'+py(S.g(x1)).toFixed(1)+'" x2="'+px(x2).toFixed(1)+'" y2="'+py(S.g(x2)).toFixed(1)+'" stroke="'+ex+'" stroke-width="2"/>';
+      h += '<circle cx="'+px(x1).toFixed(1)+'" cy="'+py(S.g(x1)).toFixed(1)+'" r="4.5" fill="'+ex+'"/>';
+      h += '<circle cx="'+px(x2).toFixed(1)+'" cy="'+py(S.g(x2)).toFixed(1)+'" r="4.5" fill="'+ex+'"/>';
+      /* the mean, and the two heights above it */
+      h += '<line x1="'+px(m).toFixed(1)+'" y1="'+Y1+'" x2="'+px(m).toFixed(1)+'" y2="'+py(Math.max(gc,ch)).toFixed(1)+'" stroke="'+ink+'" stroke-dasharray="4 3"/>';
+      h += '<line x1="'+px(m).toFixed(1)+'" y1="'+py(gc).toFixed(1)+'" x2="'+px(m).toFixed(1)+'" y2="'+py(ch).toFixed(1)+'" stroke="'+ok+'" stroke-width="4"/>';
+      h += '<circle cx="'+px(m).toFixed(1)+'" cy="'+py(gc).toFixed(1)+'" r="4.5" fill="'+acc+'" stroke="'+G.css("--surface")+'" stroke-width="1.2"/>';
+      h += '<circle cx="'+px(m).toFixed(1)+'" cy="'+py(ch).toFixed(1)+'" r="4.5" fill="'+ex+'" stroke="'+G.css("--surface")+'" stroke-width="1.2"/>';
+      h += '<circle cx="'+px(m).toFixed(1)+'" cy="'+Y1+'" r="3.5" fill="'+ink+'"/>';
+      for(i=0;i<=4;i++){ var xv = dlo + i*(dhi-dlo)/4;
+        h += '<line x1="'+px(xv).toFixed(1)+'" y1="'+Y1+'" x2="'+px(xv).toFixed(1)+'" y2="'+(Y1+4)+'" stroke="'+mut+'"/>';
+        h += txt(px(xv), Y1+16, G.fmt(xv,2), {anchor:"middle", fs:9, mono:1}); }
+
+      h += txt(X0, 16, S.gS + " · " + S.g2S, {fs:11, fill:ink, weight:"600"});
+      h += txt(X0, 32, "E[X] = α·x₁ + (1−α)·x₂ = " + G.fmt(m,4) + " (the dot on the axis)", {fs:9});
+      h += txt(X1, 16, "● on the curve: g(E[X]) = " + G.fmt(gc,5), {anchor:"end", fs:10, fill:acc});
+      h += txt(X1, 32, "● on the chord: E[g(X)] = " + G.fmt(ch,5), {anchor:"end", fs:10, fill:ex});
+      h += txt(X0, Y1+32, "x-axis · the two round dots on the curve are x₁ and x₂", {fs:9});
+      h += txt(X1, Y1+32, (S.conv > 0 ? "chord above the curve → convex" : "chord below the curve → concave"),
+               {anchor:"end", fs:10, fill: S.conv > 0 ? ok : ex, weight:"600"});
+      svg.innerHTML = h;
+
+      var g2m = S.g2(m), gap = ch - gc;
+      out.innerHTML =
+        S.gS + " · " + S.g1S + " · " + S.g2S + " · at E[X] = " + G.fmt(m,4) + ": g'' = <b>" + G.fmt(g2m,6) + "</b> " +
+          (S.conv > 0 ? "which is positive → <b>convex</b>" : "which is negative → <b>concave</b>") +
+          " on [" + G.fmt(dlo,2) + ", " + G.fmt(dhi,2) + "]" +
+        "<br>X takes x₁ = " + G.fmt(x1,4) + " with probability α = " + G.fmt(al,2) +
+          " and x₂ = " + G.fmt(x2,4) + " with probability " + G.fmt(1-al,2) +
+          " → E[X] = <b>" + G.fmt(m,6) + "</b>" +
+        "<br>g(E[X]) = <b>" + G.fmt(gc,7) + "</b> &nbsp;" + (S.conv > 0 ? "≤" : "≥") +
+          "&nbsp; E[g(X)] = α·g(x₁) + (1−α)·g(x₂) = <b>" + G.fmt(ch,7) + "</b>" +
+          " &nbsp;· gap = " + G.fmt(Math.abs(gap),7) +
+          ((Math.abs(gap) < 1e-9) ? " (zero, because α is at an end: E[X] sits on top of one of the two points)"
+                                  : ((S.conv > 0 ? (gap > 0) : (gap < 0)) ? " ✓ Jensen holds, as it must"
+                                                                          : " — check the slider positions")) +
+        "<br>the exam sentence: \"" + S.gS + " satisfies " + S.g2S + ", which is " +
+          (S.conv > 0 ? "≥ 0" : "≤ 0") + " for all x in [" + G.fmt(dlo,2) + ", " + G.fmt(dhi,2) + "], hence g is " +
+          (S.conv > 0 ? "convex" : "concave") + " there.\" Jensen then gives " + S.jen;
+    }
+    segWire(w, "data-cx", function(f){ fn = f; draw(); });
+    [s1, s2, sal].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-cvx"] = draw;
+    draw();
+  })();
+
+  /* ============ widget: the log-likelihood, its tangent, and the two kinds of maximum ============ */
+  (function(){
+    var w = sec.querySelector("#f-w-mle"); if(!w) return;
+    var svg = w.querySelector("svg"), out = w.querySelector(".readout");
+    var stt = w.querySelector("#f-ml-t"), sm = w.querySelector("#f-ml-m");
+    var mod = "poi";
+
+    var DATA = {
+      poi: [2,3,1,4,2,5,3,2,4,1],
+      ber: [1,0,1,1,0,1,1,1,0,1],
+      uni: [0.42,1.31,0.77,1.58,0.95,1.12,0.63,1.49,0.88,1.04]
+    };
+    var ML = {
+      poi: { lab:"parameter λ", win:[0.3, 6], kind:"A",
+        name:"Poisson(λ): p(x) = exp(−λ)·λˣ/x!",
+        ll:function(th, d){ var m = d.length, s = d.reduce(function(a,b){ return a+b; }, 0);
+          return -m*th + s*Math.log(th); },
+        dl:function(th, d){ var m = d.length, s = d.reduce(function(a,b){ return a+b; }, 0);
+          return -m + s/th; },
+        hat:function(d){ var m = d.length, s = d.reduce(function(a,b){ return a+b; }, 0); return s/m; },
+        llS:"ℓ(λ) = −mλ + s·ln λ  (the constant −Σ ln xi! is dropped)",
+        dlS:"ℓ'(λ) = −m + s/λ",
+        hatS:function(d){ var m = d.length, s = d.reduce(function(a,b){ return a+b; }, 0);
+          return "λ̂ = s/m = " + s + "/" + m + " = " + G.fmt(s/m,5); },
+        fmtd:function(d){ return d.join(", "); } },
+      ber: { lab:"parameter p", win:[0.02, 0.98], kind:"A",
+        name:"Bernoulli(p): p(1) = p, p(0) = 1 − p",
+        ll:function(th, d){ var m = d.length, k = d.reduce(function(a,b){ return a+b; }, 0);
+          return k*Math.log(th) + (m-k)*Math.log(1-th); },
+        dl:function(th, d){ var m = d.length, k = d.reduce(function(a,b){ return a+b; }, 0);
+          return k/th - (m-k)/(1-th); },
+        hat:function(d){ var m = d.length, k = d.reduce(function(a,b){ return a+b; }, 0); return k/m; },
+        llS:"ℓ(p) = k·ln p + (m − k)·ln(1 − p)",
+        dlS:"ℓ'(p) = k/p − (m − k)/(1 − p)",
+        hatS:function(d){ var m = d.length, k = d.reduce(function(a,b){ return a+b; }, 0);
+          return "p̂ = k/m = " + k + "/" + m + " = " + G.fmt(k/m,5); },
+        fmtd:function(d){ return d.join(", "); } },
+      uni: { lab:"parameter θ", win:[0.3, 3], kind:"B",
+        name:"Unif(0, θ): p(x) = 1/θ for 0 ≤ x ≤ θ, and 0 outside",
+        ll:function(th, d){ var m = d.length, mx = Math.max.apply(null, d);
+          return (th < mx) ? NaN : -m*Math.log(th); },
+        dl:function(th, d){ var m = d.length, mx = Math.max.apply(null, d);
+          return (th < mx) ? NaN : -m/th; },
+        hat:function(d){ return Math.max.apply(null, d); },
+        llS:"ℓ(θ) = −m·ln θ, but only where θ ≥ max xi",
+        dlS:"ℓ'(θ) = −m/θ, which is negative for every θ and never 0",
+        hatS:function(d){ return "θ̂ = max xi = " + G.fmt(Math.max.apply(null, d),4); },
+        fmtd:function(d){ return d.map(function(v){ return G.fmt(v,2); }).join(", "); } }
+    };
+
+    function draw(){
+      var S = ML[mod], m = +sm.value, d = DATA[mod].slice(0, m);
+      var win = S.win, th = win[0] + (+stt.value)/100*(win[1]-win[0]);
+      var hat = S.hat(d);
+      stt.parentNode.querySelector(".val").textContent = G.fmt(th,3);
+      sm.parentNode.querySelector(".val").textContent = m;
+      stt.parentNode.querySelector("label").textContent = S.lab;
+
+      var acc = G.css("--accent"), ex = G.css("--c-exam"), mut = G.css("--muted"), ink = G.css("--ink"),
+          line = G.css("--line"), ok = G.css("--ok"), bad = G.css("--bad");
+      var X0 = 52, X1 = 600, Y0 = 48, Y1 = 176, i, t;
+
+      /* vertical range over the part of the window where l is defined */
+      var vlo = Infinity, vhi = -Infinity;
+      for(i=0;i<=400;i++){ t = win[0] + i*(win[1]-win[0])/400; var v = S.ll(t, d);
+        if(isFinite(v)){ vlo = Math.min(vlo, v); vhi = Math.max(vhi, v); } }
+      if(!isFinite(vlo) || !isFinite(vhi) || vhi - vlo < 1e-9){ vlo -= 1; vhi += 1; }
+      var pad = 0.12*(vhi-vlo); vlo -= pad; vhi += pad;
+      var px = function(v){ return X0 + (v-win[0])/(win[1]-win[0])*(X1-X0); };
+      var py = function(v){ return Y1 - (v-vlo)/(vhi-vlo)*(Y1-Y0); };
+
+      var h = '';
+      /* the forbidden band of the uniform model */
+      if(mod === "uni"){
+        h += '<rect x="'+X0+'" y="'+Y0+'" width="'+(px(hat)-X0).toFixed(1)+'" height="'+(Y1-Y0)+'" fill="'+line+'"/>';
+        h += txt(X0+8, Y1-10, "L(θ) = 0 here: some xi is bigger than θ", {fs:9, fill:bad});
+      }
+      var cu = '', started = false;
+      for(i=0;i<=400;i++){ t = win[0] + i*(win[1]-win[0])/400; var vv = S.ll(t, d);
+        if(!isFinite(vv)){ started = false; continue; }
+        cu += (started?'L':'M')+px(t).toFixed(1)+' '+py(vv).toFixed(1); started = true; }
+      h += '<path d="'+cu+'" fill="none" stroke="'+acc+'" stroke-width="2"/>';
+      h += '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      h += '<line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="'+mut+'"/>';
+      /* the maximiser */
+      h += '<line x1="'+px(hat).toFixed(1)+'" y1="'+Y0+'" x2="'+px(hat).toFixed(1)+'" y2="'+Y1+'" stroke="'+ex+'" stroke-width="1.6" stroke-dasharray="5 4"/>';
+      var lhat = S.ll(hat, d);
+      if(isFinite(lhat)) h += '<circle cx="'+px(hat).toFixed(1)+'" cy="'+py(lhat).toFixed(1)+'" r="4.5" fill="'+ex+'"/>';
+
+      /* the tangent at the chosen parameter */
+      var lv = S.ll(th, d), sl = S.dl(th, d), defined = isFinite(lv) && isFinite(sl);
+      if(defined){
+        var dx = 0.22*(win[1]-win[0]);
+        var ta = Math.max(win[0], th-dx), tb = Math.min(win[1], th+dx);
+        h += '<line x1="'+px(ta).toFixed(1)+'" y1="'+py(lv + sl*(ta-th)).toFixed(1)+
+             '" x2="'+px(tb).toFixed(1)+'" y2="'+py(lv + sl*(tb-th)).toFixed(1)+
+             '" stroke="'+ink+'" stroke-width="1.6"/>';
+        h += '<circle cx="'+px(th).toFixed(1)+'" cy="'+py(lv).toFixed(1)+'" r="5" fill="'+ink+'" stroke="'+G.css("--surface")+'" stroke-width="1.2"/>';
+      } else {
+        h += '<line x1="'+px(th).toFixed(1)+'" y1="'+Y0+'" x2="'+px(th).toFixed(1)+'" y2="'+Y1+'" stroke="'+bad+'" stroke-dasharray="3 3"/>';
+      }
+      for(i=0;i<=5;i++){ var xv = win[0] + i*(win[1]-win[0])/5;
+        h += '<line x1="'+px(xv).toFixed(1)+'" y1="'+Y1+'" x2="'+px(xv).toFixed(1)+'" y2="'+(Y1+4)+'" stroke="'+mut+'"/>';
+        h += txt(px(xv), Y1+16, G.fmt(xv,2), {anchor:"middle", fs:9, mono:1}); }
+
+      h += txt(X0, 16, S.name, {fs:10, fill:ink, weight:"600"});
+      h += txt(X0, 30, "data x1 … xm = " + S.fmtd(d), {fs:9, mono:1});
+      h += txt(X1, 16, "kind " + S.kind + (S.kind === "A" ? " · interior maximum" : " · boundary maximum"),
+               {anchor:"end", fs:10, fill: S.kind === "A" ? ok : bad, weight:"600"});
+      h += txt(X1, 44, "dashed vertical = " + S.hatS(d), {anchor:"end", fs:9, fill:ex});
+      h += txt(X0, Y1+32, "the straight line through the dot is the tangent; its steepness is ℓ'", {fs:9});
+      h += txt(X1, Y1+32, S.lab, {anchor:"end", fs:9});
+      svg.innerHTML = h;
+
+      var verdict;
+      if(S.kind === "A"){
+        verdict = (Math.abs(sl) < 1e-3)
+          ? "the tangent is flat here — this is the solution of ℓ'(θ) = 0"
+          : (sl > 0 ? "the tangent still climbs, so the maximum is further <b>right</b>"
+                    : "the tangent already falls, so the maximum is further <b>left</b>");
+      } else {
+        verdict = defined
+          ? "the tangent falls, and it falls at every allowed θ — ℓ'(θ) = −m/θ is never 0, so there is no interior maximum to find"
+          : "this θ is <b>impossible</b>: an observation lies outside [0, θ], so L(θ) = 0 and ℓ = ln L has no value here";
+      }
+      out.innerHTML =
+        S.name + " · m = " + m + " data points: " + S.fmtd(d) +
+        "<br>" + S.llS + " &nbsp;·&nbsp; " + S.dlS +
+        "<br>at " + S.lab.replace("parameter ", "") + " = <b>" + G.fmt(th,4) + "</b>: ℓ = <b>" +
+          (isFinite(lv) ? G.fmt(lv,6) : "not defined") + "</b> · ℓ' = <b>" +
+          (isFinite(sl) ? G.fmt(sl,6) : "not defined") + "</b> — " + verdict +
+        "<br><b>kind " + S.kind + "</b>: " + (S.kind === "A"
+          ? "solve ℓ' = 0, then check ℓ'' &lt; 0 (or that ℓ' changes sign from + to −). Answer: " + S.hatS(d)
+          : "the derivative recipe has nothing to solve. The likelihood is 0 to the left of max xi and strictly decreasing to the right of it, so the largest allowed value sits at the edge. Answer: " + S.hatS(d));
+    }
+    segWire(w, "data-ml", function(k){ mod = k; draw(); });
+    [stt, sm].forEach(function(s){ s.addEventListener("input", draw); });
+    G.redraws["f-mle"] = draw;
+    draw();
+  })();
 
   /* ============ widget: integral drill ============ */
   (function(){
